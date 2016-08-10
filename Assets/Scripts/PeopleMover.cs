@@ -9,6 +9,7 @@ public class PeopleMover : MonoBehaviour {
     public float scaredTimerDefault = 1.0f;
     bool scared = false;
     bool knockedOver = false;
+	public AudioSource scream;
 
     Vector3 scaredFrom;
 
@@ -52,6 +53,9 @@ public class PeopleMover : MonoBehaviour {
         scaredOffset.y = 0.0f;
         transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed;
         scaredTimer -= Time.deltaTime;
+		if (scream.isPlaying == false) {
+			scream.Play ();
+		}
         if (scaredTimer < 0) {
             scared = false;
         }

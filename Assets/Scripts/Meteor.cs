@@ -3,13 +3,22 @@ using System.Collections;
 
 public class Meteor : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public GameObject explosionFire;
+	public GameObject explosionSmoke;
+
+	private void Explode(){
+		GameObject fire = Instantiate (explosionFire, gameObject.transform.position, Quaternion.identity) as GameObject;
+		Destroy (fire, 10);
+
+		GameObject smoke = Instantiate (explosionSmoke, gameObject.transform.position, Quaternion.identity) as GameObject;
+		Destroy (smoke, 10);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void OnTriggerEnter(Collider other){
+		Debug.Log ("I've been entered by " + other.name);
+		if (other.name == "Terrain") {
+			Debug.Log ("Exploding isn't working but I'm in the if for it");
+			Explode ();
+		}
 	}
 }
