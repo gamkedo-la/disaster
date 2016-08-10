@@ -32,7 +32,7 @@ public class PickupParent : MonoBehaviour {
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            sphere.transform.position = Vector3.zero;
+            sphere.transform.position = transform.position;
             sphere.GetComponent<Rigidbody>().velocity = Vector3.zero;
             sphere.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }

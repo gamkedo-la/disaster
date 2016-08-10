@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class PeopleMover : MonoBehaviour {
     public Transform childTransform;
+    public float scareRadius = 0.25f;
+    public float scaredSpeed = 0.2f;
+    public float scaredTimer = 0.0f;
+    public float scaredTimerDefault = 1.0f;
     bool scared = false;
     bool knockedOver = false;
+
+    Vector3 scaredFrom;
 
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<Meteor>() && knockedOver == false) {
@@ -13,21 +18,61 @@ public class PeopleMover : MonoBehaviour {
         }
     }
 
+    IEnumerator AIReact() {
+        yield return new WaitForSeconds(Random.Range(0.0f, 0.2f));
+        int peopleMask = LayerMask.GetMask("People");
+        Collider myCollider = GetComponent<Collider>();
+        while (true) {
+            Collider[] hitList = Physics.OverlapSphere(transform.position, scareRadius, peopleMask);
+            for (int i = 0; i < hitList.Length; i++) {
+                if (hitList[i] != myCollider) {
+                    PeopleMover pmScript = hitList[i].GetComponent<PeopleMover>();
+                    if (pmScript.IsKnockedOver()) {
+                        scared = true;
+                        scaredFrom = pmScript.transform.position;
+                        scaredTimer = scaredTimerDefault;
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    public bool IsKnockedOver() {
+        return knockedOver;
+    }
+
+    void Start() {
+        StartCoroutine(AIReact());
+    }
+
+    private void ScaredBehaivor() {
+        Vector3 scaredOffset = transform.position - scaredFrom;
+        scaredOffset.y = 0.0f;
+        transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed;
+        scaredTimer -= Time.deltaTime;
+        if (scaredTimer < 0) {
+            scared = false;
+        }
+    }
+
     private void knockOver()
     {
-        GetComponent<PutOnGround>().enabled = false;
         GetComponentInChildren<CameraFacingScript>().enabled = false;
         Vector3 newSpot = transform.position;
         newSpot.y += 0.0109f;
         transform.position = newSpot;
-        Quaternion rot = transform.rotation;
-        childTransform.rotation = Quaternion.identity;
-        transform.rotation = rot * Quaternion.Euler(90.0f, 0.0f, 0.0f);
+        childTransform.rotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
         knockedOver = true;
     }
 
     // Update is called once per frame
     void Update () {
-	
+        transform.position = WorldBounds.instance.ForceInbounds(transform.position);
+
+        if (scared && knockedOver == false) {
+            ScaredBehaivor();
+        }
 	}
 }

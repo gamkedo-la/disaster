@@ -17,9 +17,9 @@ public class ObjectSpawn : MonoBehaviour {
            
             Vector2 randOffset = Random.insideUnitCircle * creationRadius;
             Vector3 newSpot = transform.position;
-            Vector3 highY = new Vector3(0.0f, 1.0f, 0.0f);
+            //Vector3 highY = new Vector3(0.0f, 1.0f, 0.0f);
             newSpot += Vector3.right * randOffset.x + Vector3.forward * randOffset.y;
-            newSpot.y = highY.y;
+            newSpot.y = Terrain.activeTerrain.transform.position.y;
             tempGo.transform.position = newSpot;
 
             tempGo.transform.parent = transform;
