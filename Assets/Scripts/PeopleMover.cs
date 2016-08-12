@@ -54,6 +54,7 @@ public class PeopleMover : MonoBehaviour {
         transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed;
         scaredTimer -= Time.deltaTime;
 		if (scream.isPlaying == false) {
+            scream.pitch = Random.Range(0.6f, 1.6f);
 			scream.Play ();
 		}
         if (scaredTimer < 0) {
