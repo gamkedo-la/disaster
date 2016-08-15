@@ -6,7 +6,15 @@ public class CameraFacingScript : MonoBehaviour {
     Camera camToFace;
 	// Use this for initialization
 	void Start () {
-        camToFace = GameObject.Find("Camera (eye)").GetComponent<Camera>();
+        GameObject tempGO;
+        tempGO = GameObject.Find("Camera (eye)");
+        if (tempGO == null)
+        {
+            camToFace = GameObject.Find("LocalPlayCamera").GetComponent<Camera>();
+        }
+        else {
+            camToFace = tempGO.GetComponent<Camera>();
+        }
 	}
 	
 	// Update is called once per frame
