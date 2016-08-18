@@ -6,6 +6,16 @@ public class WorldSettings : MonoBehaviour {
     public GameObject viveCamParent;
     public GameObject localPlayCam;
     // Use this for initialization
+
+    void Awake() {
+        if (SteamVR.instance == null)
+        {
+            isVREnabled = false;
+        }
+        else {
+            isVREnabled = true;
+        }
+    }
 	void Start () {
         if (isVREnabled)
         {
