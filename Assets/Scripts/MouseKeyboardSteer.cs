@@ -15,8 +15,8 @@ public class MouseKeyboardSteer : MonoBehaviour {
         transform.position += Vector3.forward * 4.0f * Time.deltaTime * Input.GetAxis("Vertical");
         transform.position += Vector3.right * 4.0f * Time.deltaTime * Input.GetAxis("Horizontal");
 
-        camLat += Time.deltaTime * Input.GetAxis("Mouse Y") * 50.0f * -1.0f;
-        camLon += Time.deltaTime * Input.GetAxis("Mouse X") * 50.0f * -1.0f;
+		camLat += Time.deltaTime * Input.GetAxis("Mouse Y") * 50.0f * -1.0f;
+        camLon += Time.deltaTime * Input.GetAxis("Mouse X") * 50.0f;
 
         transform.rotation = Quaternion.Euler(camLat, camLon, 0.0f);
 

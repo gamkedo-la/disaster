@@ -5,7 +5,7 @@ using System;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class PickupParent : MonoBehaviour {
 
-    public Transform sphere;
+	public GameObject sphere;
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
     // Use this for initialization
@@ -32,7 +32,10 @@ public class PickupParent : MonoBehaviour {
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            sphere.transform.position = transform.position;
+			if (sphere.gameObject == null) {
+				sphere = (GameObject)GameObject.Instantiate(sphere);
+			}
+			sphere.transform.position = transform.position;
             sphere.GetComponent<Rigidbody>().velocity = Vector3.zero;
             sphere.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
