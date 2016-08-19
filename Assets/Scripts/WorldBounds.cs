@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WorldBounds : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class WorldBounds : MonoBehaviour {
     private float Ex;
     private float Sz;
     private float Wx;
+	List<float> boundries;
 
     public Vector3 ForceInbounds(Vector3 before) {
         Vector3 after = before;
@@ -34,11 +36,20 @@ public class WorldBounds : MonoBehaviour {
         return after;
     }
 
+	public List<float> Boundries(){
+		boundries.Add (Nz);
+		boundries.Add (Ex);
+		boundries.Add (Sz);
+		boundries.Add (Wx);
+		return boundries;
+	}
+
     void Awake () {
         instance = this;
         Nz = edgeN.position.z;
         Ex = edgeE.position.x;
         Sz = edgeS.position.z;
         Wx = edgeW.position.x;
+		boundries = new List<float> ();
 	}
 }

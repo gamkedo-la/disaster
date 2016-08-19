@@ -15,9 +15,7 @@ public class Meteor : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log ("I've been entered by " + other.name);
 		if (other.name == "Terrain") {
-			Debug.Log ("Exploding isn't working but I'm in the if for it");
 			Explode ();
 		}
 	}
