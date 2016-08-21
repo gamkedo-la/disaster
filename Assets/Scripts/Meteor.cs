@@ -12,6 +12,8 @@ public class Meteor : MonoBehaviour {
 
 		GameObject smoke = Instantiate (explosionSmoke, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (smoke, 10);
+
+        Destroy(gameObject);
 	}
 
 	void OnTriggerEnter(Collider other){

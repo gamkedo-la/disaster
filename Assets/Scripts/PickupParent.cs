@@ -30,14 +30,13 @@ public class PickupParent : MonoBehaviour {
         //    Debug.Log("You activated 'TouchUp' on the trigger");
         //}
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && transform.position.y > Camera.main.transform.position.y + 0.3f)
         {
-			if (sphere.gameObject == null) {
-				sphere = (GameObject)GameObject.Instantiate(sphere);
-			}
-			sphere.transform.position = transform.position;
-            sphere.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            sphere.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            Debug.Log("pressed!");
+            GameObject tempMeteor = (GameObject)GameObject.Instantiate(sphere);
+            tempMeteor.transform.position = transform.position;
+            //tempMeteor.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //tempMeteor.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
