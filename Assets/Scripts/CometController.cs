@@ -10,8 +10,11 @@ public class CometController : MonoBehaviour {
 
 
     IEnumerator CometSpawner() {
-        yield return new WaitForSeconds(Random.Range(2.0f, 8.0f));
-        SpawnComet();
+        yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
+        while (true) {
+            SpawnComet();
+            yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
+        }
     }
 
     void SpawnComet() {
@@ -28,12 +31,16 @@ public class CometController : MonoBehaviour {
         rb.velocity = tempComet.transform.forward * cometSpeed;
         Destroy(tempComet, 4.0f);
     }
+
+
+    void Start() {
+        StartCoroutine(CometSpawner());
+    }
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.M)) {
             //StartCoroutine(Spawncomet());
             SpawnComet();
         }
-        StartCoroutine(CometSpawner());
 	}
 }
