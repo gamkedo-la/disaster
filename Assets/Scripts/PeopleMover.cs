@@ -14,7 +14,12 @@ public class PeopleMover : MonoBehaviour {
     Vector3 scaredFrom;
 
     void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<Meteor>() && knockedOver == false) {
+        Debug.Log("I've been entered by " + other.name);
+        if (other.GetComponent<Meteor>() && knockedOver == false)
+        {
+            knockOver();
+        }
+        else if (other.name == "TornadoBody" && knockedOver == false) {
             knockOver();
         }
     }

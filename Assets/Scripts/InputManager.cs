@@ -18,11 +18,15 @@ public class InputManager : MonoBehaviour {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
 	}
 
-    void SpawnAndParentObject(GameObject toSpawn, bool lockedToHand) {
+    void SpawnAndParentObject(GameObject toSpawn, bool lockedToHand, bool hasRB) {
         focusedGO = (GameObject)GameObject.Instantiate(toSpawn);
-        Rigidbody toSpawnRB = focusedGO.gameObject.GetComponent<Rigidbody>();
+        
         focusedGO.transform.position = transform.position;
-        toSpawnRB.isKinematic = true;
+        focusedGO.transform.rotation = transform.rotation;
+        if (hasRB) {
+            Rigidbody toSpawnRB = focusedGO.gameObject.GetComponent<Rigidbody>();
+            toSpawnRB.isKinematic = true;
+        }
         if (lockedToHand) {
             focusedGO.gameObject.transform.SetParent(gameObject.transform);
         }
@@ -55,7 +59,7 @@ public class InputManager : MonoBehaviour {
             else if (transform.position.y > Camera.main.transform.position.y + 0.3f)
             {
                 currentAction = inputMode.Meteor;
-                SpawnAndParentObject(meteor, true);
+                SpawnAndParentObject(meteor, true, true);
             }
             else if (transform.position.y < Terrain.activeTerrain.transform.position.y)
             {
@@ -63,7 +67,7 @@ public class InputManager : MonoBehaviour {
             }
             else {
                 currentAction = inputMode.Tornado;
-                SpawnAndParentObject(tornado, false);
+                SpawnAndParentObject(tornado, false, false);
             }
             Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
         }
@@ -78,9 +82,13 @@ public class InputManager : MonoBehaviour {
                     meteorRB.isKinematic = false;
                     tossObject(meteorRB);
                     break;
-                /* case inputMode.Tornado:
+                case inputMode.Tornado:
+                    TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
+                    tm.AddPower(2.0f);
+                    //tornado.transform.rotation = transform.rotation;
+                    tm.StartMoving();
                     break;
-                case inputMode.Storms:
+                /*case inputMode.Storms:
                     break;
                 case inputMode.Volcano:
                     break; */
