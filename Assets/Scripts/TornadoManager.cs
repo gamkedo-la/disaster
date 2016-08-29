@@ -15,6 +15,7 @@ public class TornadoManager : MonoBehaviour {
     }
 
     public void StartMoving() {
+        Debug.Log("I'm going to start moving now!");
         isMoving = true;
         Destroy(gameObject, 4.0f);
     }

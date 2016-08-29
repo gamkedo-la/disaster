@@ -12,6 +12,10 @@ public class InputManager : MonoBehaviour {
     public enum inputMode { None, Tornado, Storms, Meteor, Volcano };
     public inputMode currentAction = inputMode.None;
     GameObject focusedGO;
+    bool isHandInCloud = false;
+    bool isStiring = false;
+    int movementSmoothingFrames = 0;
+    Vector3 prevPOS;
 
     // Use this for initialization
     void Awake () {
@@ -33,6 +37,14 @@ public class InputManager : MonoBehaviour {
         
     }
 
+    public void MarkHandAsInCloud() {
+        isHandInCloud = true;
+    }
+
+    public void MarkHandAsNotInCloud() {
+        isHandInCloud = false;
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () {
         device = SteamVR_Controller.Input((int)trackedObj.index);
@@ -50,7 +62,6 @@ public class InputManager : MonoBehaviour {
         //    Debug.Log("You activated 'TouchUp' on the trigger");
         //}
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
-            bool isHandInCloud = false;  // #TODO Determine if in cloud
             if (isHandInCloud)
             {
                 currentAction = inputMode.Storms;
@@ -85,7 +96,7 @@ public class InputManager : MonoBehaviour {
                 case inputMode.Tornado:
                     TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
                     tm.AddPower(2.0f);
-                    //tornado.transform.rotation = transform.rotation;
+                    Debug.Log("I'm calling start moving!");
                     tm.StartMoving();
                     break;
                 /*case inputMode.Storms:
@@ -99,8 +110,44 @@ public class InputManager : MonoBehaviour {
 
             currentAction = inputMode.None;
         }
+        if (currentAction == inputMode.Tornado) {
+            Vector3 movementDelta = transform.position - prevPOS;
+            movementDelta *= 2000.0f;
+            if (movementDelta.magnitude > 15.0f)
+            {
+                if (isStiring == false)
+                {
+                    movementSmoothingFrames++;
+                    if (movementSmoothingFrames > 10)
+                    {
+                        isStiring = true;
+                        Debug.Log("Started stiring");
+                        movementSmoothingFrames = 10;
+                        if (focusedGO)
+                        {
+                            focusedGO.GetComponentInChildren<Spinner>().IncreasePower();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isStiring)
+                {
+                    movementSmoothingFrames--;
+                    if (movementSmoothingFrames < 0)
+                    {
+                        isStiring = false;
+                        Debug.Log("Stopped stiring");
+                        movementSmoothingFrames = 0;
+                    }
 
-
+                }
+            }
+        }
+        
+        //Debug.Log("movementDelta = " + movementDelta * 2000);
+        prevPOS = transform.position;
     }
 
     void OnTriggerStay(Collider other) {
