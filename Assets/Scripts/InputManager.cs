@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour {
     public enum inputMode { None, Tornado, Storms, Meteor, Volcano };
     public inputMode currentAction = inputMode.None;
     GameObject focusedGO;
-    bool isHandInCloud = false;
+    public bool isHandInCloud = false;
     bool isStiring = false;
     int movementSmoothingFrames = 0;
     Vector3 prevPOS;
@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void MarkHandAsInCloud() {
+        Debug.Log("marking as true");
         isHandInCloud = true;
     }
 
@@ -80,7 +81,7 @@ public class InputManager : MonoBehaviour {
                 currentAction = inputMode.Tornado;
                 SpawnAndParentObject(tornado, false, false);
             }
-            Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
+            //Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
         }
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
@@ -96,7 +97,7 @@ public class InputManager : MonoBehaviour {
                 case inputMode.Tornado:
                     TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
                     tm.AddPower(2.0f);
-                    Debug.Log("I'm calling start moving!");
+                    //Debug.Log("I'm calling start moving!");
                     tm.StartMoving();
                     break;
                 /*case inputMode.Storms:
@@ -121,7 +122,7 @@ public class InputManager : MonoBehaviour {
                     if (movementSmoothingFrames > 10)
                     {
                         isStiring = true;
-                        Debug.Log("Started stiring");
+                        //Debug.Log("Started stiring");
                         movementSmoothingFrames = 10;
                         if (focusedGO)
                         {
@@ -138,7 +139,7 @@ public class InputManager : MonoBehaviour {
                     if (movementSmoothingFrames < 0)
                     {
                         isStiring = false;
-                        Debug.Log("Stopped stiring");
+                        //Debug.Log("Stopped stiring");
                         movementSmoothingFrames = 0;
                     }
 
@@ -150,10 +151,11 @@ public class InputManager : MonoBehaviour {
         prevPOS = transform.position;
     }
 
-    void OnTriggerStay(Collider other) {
-        Debug.Log("You have collided with " + other.name + " and activated OnTriggerStay");
+    void OnTriggerEnter(Collider other) {
+        //Debug.Log("You have collided with " + other.name + " and activated OnTriggerStay");
+        Debug.Log(other.name);
         if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger)) {
-            Debug.Log("You have collided with " + other.name + " while holding down Touch");
+            //Debug.Log("You have collided with " + other.name + " while holding down Touch");
             
         }
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger)) {
