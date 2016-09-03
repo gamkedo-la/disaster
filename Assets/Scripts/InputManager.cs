@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour {
     public enum inputMode { None, Tornado, Storms, Meteor, Volcano };
     public inputMode currentAction = inputMode.None;
     GameObject focusedGO;
+    GameObject cloud;
     public bool isHandInCloud = false;
     bool isStiring = false;
     int movementSmoothingFrames = 0;
@@ -100,9 +101,11 @@ public class InputManager : MonoBehaviour {
                     //Debug.Log("I'm calling start moving!");
                     tm.StartMoving();
                     break;
-                /*case inputMode.Storms:
+                case inputMode.Storms:
+                    cloud.GetComponent<RainCloud>().StartStorm();
+                    cloud.transform.SetParent(null);
                     break;
-                case inputMode.Volcano:
+                /*case inputMode.Volcano:
                     break; */
                 default:
                     Debug.Log("Unhandled case: " + currentAction);
@@ -152,15 +155,16 @@ public class InputManager : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        //Debug.Log("You have collided with " + other.name + " and activated OnTriggerStay");
-        Debug.Log(other.name);
-        if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger)) {
-            //Debug.Log("You have collided with " + other.name + " while holding down Touch");
-            
-        }
-        if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger)) {
-           
-            
+        
+        if (other.gameObject.GetComponent<RainCloud>() != null || other.gameObject.GetComponent<ThunderCloud>() != null)
+        {
+            MarkHandAsInCloud();
+            cloud = other.gameObject;
+            if (currentAction == inputMode.Storms)
+            {
+                other.gameObject.transform.SetParent(gameObject.transform);
+            }
+
         }
     }
 
