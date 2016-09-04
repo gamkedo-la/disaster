@@ -4,6 +4,7 @@ using System.Collections;
 public class Spinner : MonoBehaviour {
 
     public float spinPower = 0.0f;
+    public float spinPowerUp = 150.0f;
     ParticleSystem tornadoParticles;
     float endRadius = 0.05f;
     float startRadius = 0.5f;
@@ -27,7 +28,7 @@ public class Spinner : MonoBehaviour {
     }
 
     public void IncreasePower() {
-        spinPower += 100.0f;
+        spinPower += spinPowerUp;
         if (spinPower > maxSpinPower) {
             spinPower = maxSpinPower;
         }

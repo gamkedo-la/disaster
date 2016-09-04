@@ -80,7 +80,7 @@ public class InputManager : MonoBehaviour {
             }
             else {
                 currentAction = inputMode.Tornado;
-                SpawnAndParentObject(tornado, false, false);
+                
             }
             //Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
         }
@@ -102,7 +102,14 @@ public class InputManager : MonoBehaviour {
                     tm.StartMoving();
                     break;
                 case inputMode.Storms:
-                    cloud.GetComponent<RainCloud>().StartStorm();
+                    RainCloud storm = cloud.GetComponent<RainCloud>();
+                    if (storm != null)
+                    {
+                        storm.StartStorm();
+                    }
+                    else {
+                        cloud.GetComponent<ThunderCloud>().StartStorm();
+                    }
                     cloud.transform.SetParent(null);
                     break;
                 /*case inputMode.Volcano:
@@ -129,7 +136,12 @@ public class InputManager : MonoBehaviour {
                         movementSmoothingFrames = 10;
                         if (focusedGO)
                         {
-                            focusedGO.GetComponentInChildren<Spinner>().IncreasePower();
+                            if (focusedGO.GetComponentInChildren<Spinner>() != null) {
+                                focusedGO.GetComponentInChildren<Spinner>().IncreasePower();
+                            }
+                        }
+                        else {
+                            SpawnAndParentObject(tornado, false, false);
                         }
                     }
                 }
@@ -154,7 +166,7 @@ public class InputManager : MonoBehaviour {
         prevPOS = transform.position;
     }
 
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerStay(Collider other) {
         
         if (other.gameObject.GetComponent<RainCloud>() != null || other.gameObject.GetComponent<ThunderCloud>() != null)
         {
@@ -165,6 +177,12 @@ public class InputManager : MonoBehaviour {
                 other.gameObject.transform.SetParent(gameObject.transform);
             }
 
+        }
+    }
+
+    void OnTriggerExit(Collider other) {
+        if (other.gameObject.GetComponent<RainCloud>() != null || other.gameObject.GetComponent<ThunderCloud>() != null) {
+            MarkHandAsNotInCloud();
         }
     }
 
@@ -180,6 +198,6 @@ public class InputManager : MonoBehaviour {
             rigidbody.velocity = device.velocity;
             rigidbody.angularVelocity = device.angularVelocity;
         }
-        
+        Destroy(rigidbody.gameObject, 4.0f);
     }
 }

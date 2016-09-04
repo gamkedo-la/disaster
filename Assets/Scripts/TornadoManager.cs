@@ -29,5 +29,7 @@ public class TornadoManager : MonoBehaviour {
         if (isMoving) {
             MoveTornado();
         }
+        //Vector3 newRot = transform.rotation.eulerAngles;
+        //transform.rotation = Quaternion.Euler(newRot.x, -175.0f, newRot.z);
     }
 }
