@@ -4,13 +4,19 @@ using System.Collections;
 [RequireComponent(typeof(Terrain))]
 public class TerrainDeformationManager : MonoBehaviour
 {
+    [SerializeField] bool m_allowErosion = true;
     [SerializeField] float m_erosionRate = 1f;
-    [SerializeField] int m_errosionChunkDivider = 8;
+    [SerializeField] int m_errosionChunkWidthDivider = 8;
+    [SerializeField] int m_errosionChunkHeightDivider = 8;
+    [SerializeField] float m_settledDifference = 0.01f;
 
     private Terrain m_terrain;
     private float[,] m_originalHeights;
     private int m_width;
     private int m_height;
+
+    private bool m_errosionOn;
+    private float m_maxDifference = 0;
 
 
     void Awake()
@@ -32,47 +38,65 @@ public class TerrainDeformationManager : MonoBehaviour
 
     private IEnumerator Erode()
     {
-        int chunkWidth = (m_width - 1) / m_errosionChunkDivider;
-        int chunkHeight = (m_height - 1) / m_errosionChunkDivider;
+        int chunkWidth = (m_width - 1) / m_errosionChunkWidthDivider;
+        int chunkHeight = (m_height - 1) / m_errosionChunkHeightDivider;
 
         int jBlock = 0;
         int iBlock = 0;
 
         while (true)
         {
-            int width = jBlock == m_errosionChunkDivider - 1 ? chunkWidth + 1 : chunkWidth;
-            int height = iBlock == m_errosionChunkDivider - 1 ? chunkHeight + 1 : chunkHeight;
-
-            int jStart = jBlock * chunkHeight;
-            int iStart = iBlock * chunkWidth;
-
-            var currentHeights = m_terrain.terrainData.GetHeights(jStart, iStart, width, height);
-
-            var newHeights = new float[height, width];
-
-            for (int i = 0; i < height; i++)
+            if (m_errosionOn && m_allowErosion)
             {
-                for (int j = 0; j < width; j++)
+                if (iBlock == 0 && jBlock == 0)
+                    m_maxDifference = 0;
+
+                int width = jBlock == m_errosionChunkWidthDivider - 1 ? chunkWidth + 1 : chunkWidth;
+                int height = iBlock == m_errosionChunkHeightDivider - 1 ? chunkHeight + 1 : chunkHeight;
+
+                var newHeights = new float[height, width];
+
+                int jStart = jBlock * chunkWidth;
+                int iStart = iBlock * chunkHeight;
+
+                var currentHeights = m_terrain.terrainData.GetHeights(jStart, iStart, width, height);
+
+                for (int i = 0; i < height; i++)
                 {
-                    float currentHeight = currentHeights[i, j];
-                    float originalHeight = m_originalHeights[i + iStart, j + jStart];
+                    for (int j = 0; j < width; j++)
+                    {
+                        float currentHeight = currentHeights[i, j];
+                        float originalHeight = m_originalHeights[i + iStart, j + jStart];
 
-                    newHeights[i, j] = Mathf.Lerp(
-                        currentHeight, 
-                        originalHeight,
-                        Time.deltaTime * m_erosionRate);
+                        float difference = Mathf.Abs(currentHeight - originalHeight);
+
+                        if (difference > m_maxDifference)
+                            m_maxDifference = difference;
+
+                        newHeights[i, j] = Mathf.Lerp(
+                            currentHeight,
+                            originalHeight,
+                            Time.deltaTime * m_erosionRate);
+                    }
                 }
-            }
 
-            m_terrain.terrainData.SetHeights(jStart, iStart, newHeights);
+                m_terrain.terrainData.SetHeights(jStart, iStart, newHeights);          
 
-            iBlock++;
-            iBlock = iBlock % m_errosionChunkDivider;
+                iBlock++;
+                iBlock = iBlock % m_errosionChunkHeightDivider;
 
-            if (iBlock == 0)
-            {
-                jBlock++;
-                jBlock = jBlock % m_errosionChunkDivider;
+                if (iBlock == 0)
+                {
+                    jBlock++;
+                    jBlock = jBlock % m_errosionChunkWidthDivider;
+                }
+
+                if (iBlock == 0 && jBlock == 0
+                    && m_maxDifference <= m_settledDifference)
+                {
+                    m_errosionOn = false;
+                    print("Erosion off, max difference = " + m_maxDifference);
+                }
             }
 
             yield return null;
@@ -86,6 +110,9 @@ public class TerrainDeformationManager : MonoBehaviour
 
         if (terrainDeformer != null)
         {
+            if (m_allowErosion)
+                StartCoroutine(TurnOnErosion());
+
             terrainDeformer.DeformTerrain(m_terrain, col.contacts[0].point);
         }
     }
@@ -97,8 +124,21 @@ public class TerrainDeformationManager : MonoBehaviour
 
         if (terrainDeformer != null)
         {
+            if (m_allowErosion)
+                StartCoroutine(TurnOnErosion());
+
             terrainDeformer.DeformTerrain(m_terrain, other.transform.position);
         }
+    }
+
+
+    private IEnumerator TurnOnErosion()
+    {
+        print("Turning on erosion");
+        yield return new WaitForSeconds(1f);
+
+        m_errosionOn = true;
+        print("Erosion on");
     }
 
 
