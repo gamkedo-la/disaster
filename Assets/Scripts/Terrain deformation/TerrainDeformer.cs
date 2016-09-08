@@ -1,17 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 {
+    [Header("Deformation options")]
     [SerializeField] float m_radiusWorldUnits = 5f;
     [SerializeField] float m_heightWorldUnits = 3f;
     [SerializeField] AnimationCurve m_profile;
     [SerializeField] float m_deformationDuration = 0f;
 
+    [Header("Bumpiness options")]
+    [SerializeField] float m_bumpScale = 5f;
+    [SerializeField] float m_bumpHeightWorldUnits = 0.3f;
+    [SerializeField] AnimationCurve m_bumpBlend;
+
+    [Header("Scar options")]
+    [SerializeField] int m_scarTextureIndex = 0;
+    [SerializeField] AnimationCurve m_scarBlend;
+
     private bool m_deformed = false;
     private Rigidbody m_rigidbody;
-    private Terrain m_terrain;
+    private TerrainData m_terrainData;
     private int m_xBase;
     private int m_yBase;
     private int m_xSize;
@@ -31,21 +40,22 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 
         m_deformed = true;
 
-        m_terrain = terrain;
+        m_terrainData = terrain.terrainData;
 
-        int heightMapWidth = terrain.terrainData.heightmapWidth;
-        int heightMapHeight = terrain.terrainData.heightmapHeight;
+        int heightMapWidth = m_terrainData.heightmapWidth;
+        int heightMapHeight = m_terrainData.heightmapHeight;
 
         //print(string.Format("height: {0}, width: {1}", heightMapWidth, heightMapHeight));
 
-        int radius = Mathf.CeilToInt(m_radiusWorldUnits / terrain.terrainData.heightmapScale.x);
-        float height = m_heightWorldUnits / terrain.terrainData.heightmapScale.y;
+        int radius = Mathf.CeilToInt(m_radiusWorldUnits / m_terrainData.heightmapScale.x);
+        float height = m_heightWorldUnits / m_terrainData.heightmapScale.y;
+        float bumpHeight = m_bumpHeightWorldUnits / m_terrainData.heightmapScale.y;
 
         // get the normalized position of this game object relative to the terrain
         Vector3 coord = (position - terrain.gameObject.transform.position);
-        coord.x = coord.x / terrain.terrainData.size.x;
-        coord.y = coord.y / terrain.terrainData.size.y;
-        coord.z = coord.z / terrain.terrainData.size.z;
+        coord.x = coord.x / m_terrainData.size.x;
+        coord.y = coord.y / m_terrainData.size.y;
+        coord.z = coord.z / m_terrainData.size.z;
 
         // get the position of the terrain heightmap where the collision happened
         float xPos = coord.x * heightMapWidth;
@@ -56,10 +66,10 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
         int posXInTerrain = (int) xPos;
         int posYInTerrain = (int) yPos;
 
-        int xMin = Math.Max(0, posXInTerrain - radius);
-        int xMax = Math.Min(heightMapWidth , posXInTerrain + radius);
-        int yMin = Math.Max(0, posYInTerrain - radius);
-        int yMax = Math.Min(heightMapHeight, posYInTerrain + radius);
+        int xMin = Mathf.Max(0, posXInTerrain - radius);
+        int xMax = Mathf.Min(heightMapWidth , posXInTerrain + radius);
+        int yMin = Mathf.Max(0, posYInTerrain - radius);
+        int yMax = Mathf.Min(heightMapHeight, posYInTerrain + radius);
 
         //print(string.Format("xMin: {0}, xMax: {1}, yMin: {2}, yMax: {3}", xMin, xMax, yMin, yMax));
 
@@ -73,6 +83,10 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
         m_yBase = yMin;
 
         float[,] sampleHeights = new float[m_xSize, m_ySize];
+        float[,] sampleScarBlend = new float[m_xSize - 1, m_ySize - 1];
+
+        float offsetX = Random.Range(0f, 10000f);
+        float offsetY = Random.Range(0f, 10000f);
 
         for (int i = 0; i < m_xSize; i++)
         {
@@ -83,22 +97,33 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
                 float sampleYPos = j - yMinToCentre + posYInTerrain;
                 float xDiff = sampleXPos - xPos;
                 float yDiff = sampleYPos - yPos;
-                float dist = Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff) * terrain.terrainData.heightmapScale.x / m_radiusWorldUnits;
-                sampleHeights[i, j] = height * m_profile.Evaluate(dist);
+                float dist = Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff) * m_terrainData.heightmapScale.x / m_radiusWorldUnits;
+
+                float bump = Mathf.PerlinNoise(offsetX + i / m_bumpScale, offsetY + j / m_bumpScale) * 2f - 1f;
+                //print(string.Format("{0}, {1}, {2}", i * m_bumpinessScale, j * m_bumpinessScale, bump));
+                bump *= bumpHeight * m_bumpBlend.Evaluate(dist);
+
+                sampleHeights[i, j] = height * m_profile.Evaluate(dist) + bump;
+
+                if (i < m_xSize - 1 && j < m_ySize - 1)
+                    sampleScarBlend[i, j] = m_scarBlend.Evaluate(dist);
             }
         }
 
         if (m_deformationDuration < 0.01f)
         {
-            var heights = m_terrain.terrainData.GetHeights(m_xBase, m_yBase, m_xSize, m_ySize);
-            terrain.terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, 1f));
+            var heights = m_terrainData.GetHeights(m_xBase, m_yBase, m_xSize, m_ySize);
+            m_terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, 1f));
+
+            var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
+            m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, 1f));
 
             Destroy(gameObject);
             //m_rigidbody.isKinematic = true;
         }
         else
         {
-            StartCoroutine(AddHeightsIncrementally(sampleHeights));
+            StartCoroutine(DeformIncrementally(sampleHeights, sampleScarBlend));
         }
     }
 
@@ -123,21 +148,56 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
     }
 
 
-    private IEnumerator AddHeightsIncrementally(float[,] sampleHeights)
+    private float[,,] AddScar(float[,,] maps, float[,] sampleScarBlend, float frac)
+    {
+        int textures = maps.GetLength(2);
+
+        for (int i = 0; i < m_xSize - 1; i++)
+        {
+            for (int j = 0; j < m_ySize - 1; j++)
+            {
+                float blend = frac * sampleScarBlend[i, j];
+    
+                for (int k = 0; k < textures; k++)
+                {
+                    float existing = maps[j, i, k];
+                    float existingScar = maps[j, i, m_scarTextureIndex];
+
+                    float newValue = k == m_scarTextureIndex
+                        ? existing + blend
+                        : existingScar < 1f
+                            ? existing * (1f - (blend / (1f - existingScar)))
+                            : 0f;
+
+                    maps[j, i, k] = newValue;
+                }
+            }
+        }
+
+        return maps;
+    }
+
+
+    private IEnumerator DeformIncrementally(float[,] sampleHeights, float[,] sampleScarBlend)
     {
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
 
         float startTime = Time.time;
         float duration = 0;
+        float totalFrac = 0;
 
         while (duration <= m_deformationDuration)
         {
             duration = Time.time - startTime;
-            float frac = Time.deltaTime / m_deformationDuration;
+            float frac = Mathf.Min(1f - totalFrac, Time.deltaTime / m_deformationDuration);
+            totalFrac += frac;
 
-            var heights = m_terrain.terrainData.GetHeights(m_xBase, m_yBase, m_xSize, m_ySize);
-            m_terrain.terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, frac));
+            var heights = m_terrainData.GetHeights(m_xBase, m_yBase, m_xSize, m_ySize);
+            m_terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, frac));
+
+            var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
+            m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, frac));
 
             yield return null;
         }

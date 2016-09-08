@@ -11,9 +11,13 @@ public class TerrainDeformationManager : MonoBehaviour
     [SerializeField] float m_settledDifference = 0.01f;
 
     private Terrain m_terrain;
+    private TerrainData m_terrainData;
     private float[,] m_originalHeights;
+    private float[,,] m_originalAlphaMaps;
     private int m_width;
     private int m_height;
+    private int m_alphaMapWidth;
+    private int m_alphaMapHeight;
 
     private bool m_errosionOn;
     private float m_maxDifference = 0;
@@ -22,15 +26,20 @@ public class TerrainDeformationManager : MonoBehaviour
     void Awake()
     {
         m_terrain = GetComponent<Terrain>();
+        m_terrainData = m_terrain.terrainData;
 
-        m_width = m_terrain.terrainData.heightmapWidth;
-        m_height = m_terrain.terrainData.heightmapHeight;
+        m_width = m_terrainData.heightmapWidth;
+        m_height = m_terrainData.heightmapHeight;
+
+        m_alphaMapWidth = m_terrainData.alphamapWidth;
+        m_alphaMapHeight = m_terrainData.alphamapHeight;
     }
 
 
     void Start()
     {
-        m_originalHeights = m_terrain.terrainData.GetHeights(0, 0, m_width, m_height);
+        m_originalHeights = m_terrainData.GetHeights(0, 0, m_width, m_height);
+        m_originalAlphaMaps = m_terrainData.GetAlphamaps(0, 0, m_alphaMapWidth, m_alphaMapHeight);
 
         StartCoroutine(Erode());
     }
@@ -59,7 +68,7 @@ public class TerrainDeformationManager : MonoBehaviour
                 int jStart = jBlock * chunkWidth;
                 int iStart = iBlock * chunkHeight;
 
-                var currentHeights = m_terrain.terrainData.GetHeights(jStart, iStart, width, height);
+                var currentHeights = m_terrainData.GetHeights(jStart, iStart, width, height);
 
                 for (int i = 0; i < height; i++)
                 {
@@ -80,7 +89,7 @@ public class TerrainDeformationManager : MonoBehaviour
                     }
                 }
 
-                m_terrain.terrainData.SetHeights(jStart, iStart, newHeights);          
+                m_terrainData.SetHeights(jStart, iStart, newHeights);          
 
                 iBlock++;
                 iBlock = iBlock % m_errosionChunkHeightDivider;
@@ -144,6 +153,7 @@ public class TerrainDeformationManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        m_terrain.terrainData.SetHeights(0, 0, m_originalHeights);
+        m_terrainData.SetHeights(0, 0, m_originalHeights);
+        m_terrainData.SetAlphamaps(0, 0, m_originalAlphaMaps);
     }
 }
