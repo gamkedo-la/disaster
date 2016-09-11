@@ -4,6 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Terrain))]
 public class TerrainDeformationManager : MonoBehaviour
 {
+    [SerializeField] bool m_delayLodUpdate;
     [SerializeField] bool m_allowErosion = true;
     [SerializeField] float m_erosionRate = 1f;
     [SerializeField] int m_errosionChunkWidthDivider = 8;
@@ -89,7 +90,10 @@ public class TerrainDeformationManager : MonoBehaviour
                     }
                 }
 
-                m_terrainData.SetHeights(jStart, iStart, newHeights);          
+                if (m_delayLodUpdate)
+                    m_terrainData.SetHeightsDelayLOD(jStart, iStart, newHeights);  
+                else
+                    m_terrainData.SetHeights(jStart, iStart, newHeights);
 
                 iBlock++;
                 iBlock = iBlock % m_errosionChunkHeightDivider;
@@ -104,7 +108,11 @@ public class TerrainDeformationManager : MonoBehaviour
                     && m_maxDifference <= m_settledDifference)
                 {
                     m_errosionOn = false;
-                    print("Erosion off, max difference = " + m_maxDifference);
+
+                    if (m_delayLodUpdate)
+                        m_terrain.ApplyDelayedHeightmapModification();
+
+                    //print("Erosion off, max difference = " + m_maxDifference);
                 }
             }
 

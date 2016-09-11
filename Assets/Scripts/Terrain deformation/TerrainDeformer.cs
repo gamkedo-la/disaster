@@ -3,6 +3,9 @@ using System.Collections;
 
 public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 {
+    [Header("Performance options")]
+    [SerializeField] bool m_delayLodUpdate;
+
     [Header("Deformation options")]
     [SerializeField] float m_radiusWorldUnits = 5f;
     [SerializeField] float m_heightWorldUnits = 3f;
@@ -20,6 +23,7 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 
     private bool m_deformed = false;
     private Rigidbody m_rigidbody;
+    private Terrain m_terrain;
     private TerrainData m_terrainData;
     private int m_xBase;
     private int m_yBase;
@@ -40,6 +44,7 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 
         m_deformed = true;
 
+        m_terrain = terrain;
         m_terrainData = terrain.terrainData;
 
         int heightMapWidth = m_terrainData.heightmapWidth;
@@ -194,13 +199,20 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
             totalFrac += frac;
 
             var heights = m_terrainData.GetHeights(m_xBase, m_yBase, m_xSize, m_ySize);
-            m_terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, frac));
+
+            if (m_delayLodUpdate)
+                m_terrainData.SetHeightsDelayLOD(m_xBase, m_yBase, AddHeights(heights, sampleHeights, frac));
+            else
+                m_terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, frac));
 
             var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
             m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, frac));
 
             yield return null;
         }
+
+        if (m_delayLodUpdate)
+            m_terrain.ApplyDelayedHeightmapModification();
 
         Destroy(gameObject);
     }
