@@ -5,6 +5,7 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 {
     [Header("Performance options")]
     [SerializeField] bool m_delayLodUpdate;
+    [SerializeField] bool m_instantScar = true;
 
     [Header("Deformation options")]
     [SerializeField] float m_radiusWorldUnits = 5f;
@@ -192,6 +193,12 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
         float duration = 0;
         float totalFrac = 0;
 
+        if (m_instantScar)
+        {
+            var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
+            m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, 1));
+        }
+
         while (duration <= m_deformationDuration)
         {
             duration = Time.time - startTime;
@@ -205,8 +212,11 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
             else
                 m_terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, frac));
 
-            var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
-            m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, frac));
+            if (!m_instantScar)
+            {
+                var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
+                m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, frac));
+            }
 
             yield return null;
         }
