@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour {
 
 	public GameObject meteor;
     public GameObject tornado;
+    public GameObject volcanoCreator;
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
     public enum inputMode { None, Tornado, Storms, Meteor, Volcano };
@@ -74,9 +75,10 @@ public class InputManager : MonoBehaviour {
                 currentAction = inputMode.Meteor;
                 SpawnAndParentObject(meteor, true, true);
             }
-            else if (transform.position.y < Terrain.activeTerrain.transform.position.y)
+            else if (transform.position.y < Terrain.activeTerrain.SampleHeight(transform.position) + Terrain.activeTerrain.transform.position.y)
             {
                 currentAction = inputMode.Volcano;
+                
             }
             else {
                 currentAction = inputMode.Tornado;
@@ -112,8 +114,9 @@ public class InputManager : MonoBehaviour {
                     }
                     cloud.transform.SetParent(null);
                     break;
-                /*case inputMode.Volcano:
-                    break; */
+                case inputMode.Volcano:
+                    SpawnAndParentObject(volcanoCreator, true, false);
+                    break;
                 default:
                     Debug.Log("Unhandled case: " + currentAction);
                     break;
