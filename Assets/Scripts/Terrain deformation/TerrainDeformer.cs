@@ -122,7 +122,9 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
             m_terrainData.SetHeights(m_xBase, m_yBase, AddHeights(heights, sampleHeights, 1f));
 
             var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
-            m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, 1f));
+
+            if (m_scarTextureIndex <= maps.GetLength(2) - 1)
+                m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, 1f));
 
             Destroy(gameObject);
             //m_rigidbody.isKinematic = true;
@@ -196,7 +198,9 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
         if (m_instantScar)
         {
             var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
-            m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, 1));
+
+            if (m_scarTextureIndex <= maps.GetLength(2) - 1)
+                m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, 1));
         }
 
         while (duration <= m_deformationDuration)
@@ -215,7 +219,9 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
             if (!m_instantScar)
             {
                 var maps = m_terrainData.GetAlphamaps(m_xBase, m_yBase, m_xSize - 1, m_ySize - 1);
-                m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, frac));
+
+                if (m_scarTextureIndex <= maps.GetLength(2) - 1)
+                    m_terrainData.SetAlphamaps(m_xBase, m_yBase, AddScar(maps, sampleScarBlend, frac));
             }
 
             yield return null;
