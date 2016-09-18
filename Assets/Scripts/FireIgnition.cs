@@ -71,7 +71,7 @@ public class FireIgnition : MonoBehaviour {
                 fireLifetime = fuelAmount / burnRate;
             else
                 fireLifetime = 0;
-            print("starting a (" + fireType.ToString() + ") fire on: (" + gameObject.name.ToString() + ") with a duration of (" + fireLifetime.ToString() + ") seconds");
+            //print("starting a (" + fireType.ToString() + ") fire on: (" + gameObject.name.ToString() + ") with a duration of (" + fireLifetime.ToString() + ") seconds");
             theFireCreated = Instantiate(firePrefab);
             theFireCreated.transform.parent = gameObject.transform;
             
@@ -88,7 +88,7 @@ public class FireIgnition : MonoBehaviour {
                             systemShape.shapeType = ParticleSystemShapeType.Cone;
                             systemShape.angle = 0;
                             systemShape.radius = coneRadius;
-                            print("set shape radius to " + coneRadius.ToString());
+                            //print("set shape radius to " + coneRadius.ToString());
                         }
                     }
                     break;
@@ -103,7 +103,7 @@ public class FireIgnition : MonoBehaviour {
                             if (fireSystem)
                             {
 
-                                print("set the mesh");
+                                //print("set the mesh");
                                 ParticleSystem.ShapeModule systemShape = fireSystem.shape;
                                 systemShape.shapeType = ParticleSystemShapeType.MeshRenderer;
                                 systemShape.meshRenderer = theMesh;

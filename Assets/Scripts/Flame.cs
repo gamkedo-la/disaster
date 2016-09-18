@@ -17,8 +17,9 @@ public class Flame : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        print("trigger enter");
+        //print("trigger enter");
         CheckForIgnition(other.gameObject);
+        
     }
 
     void CheckForIgnition(GameObject other)
