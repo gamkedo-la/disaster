@@ -12,7 +12,7 @@ using System.Collections;
  * script belongs to, starting a fire (or creating another fire particle system that is a child of this object)
  * **************/
 public class FireIgnition : MonoBehaviour {
-    bool isOnFire = false;
+    
     public enum FireType
     {
         CONE, 
@@ -25,11 +25,15 @@ public class FireIgnition : MonoBehaviour {
     public float burnRate;
     private float fireLifetime;
     private float elapsedTime;
+    private bool isOnFire;
+    private bool startingOnFire;
     private GameObject theFireCreated;
 	// Use this for initialization
 	void Start () {
-	
-	}
+        startingOnFire = false;
+        isOnFire = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,6 +43,15 @@ public class FireIgnition : MonoBehaviour {
             if(elapsedTime >= fireLifetime)
             {
                 DestroyFire();
+            }
+        }
+        if(!isOnFire && startingOnFire)
+        {
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime > 0.5f)
+            {
+                SpawnFire();
+                elapsedTime = 0.0f;
             }
         }
 	}
@@ -55,17 +68,18 @@ public class FireIgnition : MonoBehaviour {
             Destroy(theFireCreated);
             theFireCreated = null;
             isOnFire = false; //will this cause the fire being destroyed to reignite the fire before it is destroyed?
+            startingOnFire = false;
             fireLifetime = 0;
             elapsedTime = 0;
         }
     }
 
-    public void StartFire()
+    private void SpawnFire()
     {
-        if (!isOnFire)
+        if(!isOnFire)
         {
             isOnFire = true;
-
+            startingOnFire = false;
             //Start a fire
             if (burnRate != 0)
                 fireLifetime = fuelAmount / burnRate;
@@ -74,7 +88,7 @@ public class FireIgnition : MonoBehaviour {
             //print("starting a (" + fireType.ToString() + ") fire on: (" + gameObject.name.ToString() + ") with a duration of (" + fireLifetime.ToString() + ") seconds");
             theFireCreated = Instantiate(firePrefab);
             theFireCreated.transform.parent = gameObject.transform;
-            
+
 
             switch (fireType)
             {
@@ -112,10 +126,18 @@ public class FireIgnition : MonoBehaviour {
                     }
                     break;
             }
-            
+
             //set position and move above burning object
             Vector3 newPosition = new Vector3(0.0f, 0.8f, 0.0f);
             theFireCreated.transform.localPosition = newPosition;
+        }
+    }
+
+    public void StartFire()
+    {
+        if (!isOnFire && !startingOnFire)
+        {
+            startingOnFire = true;
         }
     }
 }
