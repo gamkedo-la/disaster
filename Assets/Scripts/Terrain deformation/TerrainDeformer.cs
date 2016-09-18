@@ -232,4 +232,10 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
 
         Destroy(gameObject);
     }
+
+    //Get the radius and return it
+    public float GetRadiusWorldUnits()
+    {
+        return m_radiusWorldUnits;
+    }
 }
