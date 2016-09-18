@@ -41,12 +41,29 @@ public class PeopleMover : MonoBehaviour {
                 }
             }
 
+            if(!scared && IsOnFire())
+            {
+                scared = true;
+                scaredFrom = transform.position;
+                scaredTimer = scaredTimerDefault;
+            }
+
             yield return new WaitForSeconds(0.2f);
         }
     }
 
     public bool IsKnockedOver() {
         return knockedOver;
+    }
+
+    public bool IsOnFire()
+    {
+        FireIgnition fireScript = GetComponent<FireIgnition>();
+        if(fireScript)
+        {
+            return fireScript.IsOnFire();
+        }
+        return false;
     }
 
     void Start() {
