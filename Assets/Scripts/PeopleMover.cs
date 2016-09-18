@@ -84,7 +84,7 @@ public class PeopleMover : MonoBehaviour {
         }
     }
 
-    private void knockOver()
+    public void knockOver()
     {
         GetComponentInChildren<CameraFacingScript>().enabled = false;
         Vector3 newSpot = transform.position;
@@ -94,10 +94,16 @@ public class PeopleMover : MonoBehaviour {
         knockedOver = true;
     }
 
+    public void MakeScared() {
+        scared = true;
+    }
+
     // Update is called once per frame
     void Update () {
         transform.position = WorldBounds.instance.ForceInbounds(transform.position);
-
+        if (IsOnFire()) {
+            scared = true;
+        }
         if (scared && knockedOver == false) {
             ScaredBehaivor();
         }
