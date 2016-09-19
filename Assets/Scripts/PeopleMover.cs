@@ -94,6 +94,10 @@ public class PeopleMover : MonoBehaviour {
         }
     }
 
+    public void Ignite() {
+        knockOver();
+    }
+
     public void knockOver()
     {
         GetComponentInChildren<CameraFacingScript>().enabled = false;

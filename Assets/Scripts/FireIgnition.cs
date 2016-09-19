@@ -76,7 +76,8 @@ public class FireIgnition : MonoBehaviour {
             startingOnFire = false;
             fireLifetime = 0;
             elapsedTime = 0;
-            thisPerson.knockOver();
+            // thisPerson.knockOver();
+            SendMessage("Ignite", SendMessageOptions.DontRequireReceiver);
         }
     }
 
