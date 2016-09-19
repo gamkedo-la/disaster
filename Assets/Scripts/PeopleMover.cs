@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PeopleMover : MonoBehaviour {
     public Transform childTransform;
@@ -7,9 +8,13 @@ public class PeopleMover : MonoBehaviour {
     public float scaredSpeed = 0.2f;
     public float scaredTimer = 0.0f;
     public float scaredTimerDefault = 1.0f;
+    float lastHeight;
+    float speedModifier = 1.0f;
     bool scared = false;
     bool knockedOver = false;
 	public AudioSource scream;
+    public static int numberID = 0;
+    Text nameLabel;
 
     Vector3 scaredFrom;
 
@@ -68,12 +73,17 @@ public class PeopleMover : MonoBehaviour {
 
     void Start() {
         StartCoroutine(AIReact());
+        lastHeight = Terrain.activeTerrain.SampleHeight(transform.position) + Terrain.activeTerrain.transform.position.y;
+        nameLabel = GetComponentInChildren<Text>();
+        nameLabel.text = nameLabel.text + "#" + numberID;
+        gameObject.name = nameLabel.text;
+        numberID++;
     }
 
     private void ScaredBehaivor() {
         Vector3 scaredOffset = transform.position - scaredFrom;
         scaredOffset.y = 0.0f;
-        transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed;
+        transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed * speedModifier;
         scaredTimer -= Time.deltaTime;
 		if (scream.isPlaying == false) {
             scream.pitch = Random.Range(0.6f, 1.6f);
@@ -107,5 +117,26 @@ public class PeopleMover : MonoBehaviour {
         if (scared && knockedOver == false) {
             ScaredBehaivor();
         }
+        
 	}
+
+    void FixedUpdate() {
+        float changeInY = transform.position.y - lastHeight;
+        float speedModifierTarget = 1.0f;
+        if (changeInY > 0.0f)
+        {
+            speedModifierTarget += changeInY * -500.5f;
+        }
+        else {
+            speedModifierTarget += changeInY * -1.0f;
+        }
+        float slopeSmoothK = 0.2f;
+        speedModifier = slopeSmoothK * speedModifier + (1.0f - slopeSmoothK) * speedModifierTarget;
+
+        if (nameLabel.text == "Bob#3")
+        {
+            Debug.Log("SpeedModifier is " + speedModifier + " for " + nameLabel.text);
+        }
+        lastHeight = transform.position.y;
+    }
 }

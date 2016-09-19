@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour {
 	public GameObject meteor;
     public GameObject tornado;
     public GameObject volcanoCreator;
+    public GameObject deadBody;
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
     public enum inputMode { None, Tornado, Storms, Meteor, Volcano };
@@ -55,10 +56,12 @@ public class InputManager : MonoBehaviour {
         //    Debug.Log("You're holding 'Touch' on the trigger");
         //}
 
-        //if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
-        //{
-        //    Debug.Log("You activated 'TouchDown' on the trigger");
-        //}
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+        {
+            GameObject db = (GameObject)GameObject.Instantiate(deadBody);
+            db.transform.position = transform.position;
+            db.GetComponent<PeopleMover>().knockOver();
+        }
 
         //if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         //{
@@ -81,7 +84,7 @@ public class InputManager : MonoBehaviour {
                 
             }
             else {
-                currentAction = inputMode.Tornado;
+                //currentAction = inputMode.Tornado;
                 
             }
             //Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
@@ -181,6 +184,13 @@ public class InputManager : MonoBehaviour {
             }
 
         }
+
+        /*if (other.gameObject.GetComponent<PeopleMover>() != null) {
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                other.gameObject.GetComponent<PeopleMover>().knockOver();
+            }
+        }*/
     }
 
     void OnTriggerExit(Collider other) {
