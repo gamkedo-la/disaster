@@ -17,12 +17,28 @@ public class Flame : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        //print("trigger enter");
-        CheckForIgnition(other.gameObject);
+        //print("fire trigger entered by : " + other.gameObject.name);
+
+        //check if collider belongs to the "Rain" gameObject, else try to start it on fire
+        if (other.gameObject.name == "Rain")
+        {
+            //Play rain on fire sound
+            //TODO: add rain sound
+
+            //Tell yourself and your parents the fire is being extinguished
+            SendMessageUpwards("ExtinguishFire", SendMessageOptions.DontRequireReceiver);
+        }
+        else
+            CheckForIgnition(other.gameObject);
         
     }
 
-    void CheckForIgnition(GameObject other)
+    private void ExtinguishFire()
+    {
+        Destroy(gameObject);
+    }
+
+    bool CheckForIgnition(GameObject other)
     {
         FireIgnition igniteScript = other.GetComponent<FireIgnition>();
         if (igniteScript != null)
@@ -30,7 +46,9 @@ public class Flame : MonoBehaviour {
             //print("flame trigger enter on: " + other.name.ToString());
             //Object has an FireIgnition script, so start a fire 
             igniteScript.StartFire();
+            return true;
         }
+        return false;
     }
 
     //The particles colliding with an object 'other' call this function

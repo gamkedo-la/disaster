@@ -70,14 +70,23 @@ public class FireIgnition : MonoBehaviour {
     {
         if(theFireCreated != null)
         {
+            ExtinguishFire();
+            //print("FireIgnition: fire burned out");
+            SendMessage("FireBurnedOut", SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public void ExtinguishFire()
+    {
+        //print("FireIgnition: fire being extinguished");
+        if(theFireCreated != null)
+        {
             Destroy(theFireCreated);
             theFireCreated = null;
             isOnFire = false; //will this cause the fire being destroyed to reignite the fire before it is destroyed?
             startingOnFire = false;
             fireLifetime = 0;
             elapsedTime = 0;
-            // thisPerson.knockOver();
-            SendMessage("Ignite", SendMessageOptions.DontRequireReceiver);
         }
     }
 

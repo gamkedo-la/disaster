@@ -94,8 +94,17 @@ public class PeopleMover : MonoBehaviour {
         }
     }
 
-    public void Ignite() {
+    //The fire on this person burned out, it's entire lifetime has passed before being extinguished so the person has died. 
+    public void FireBurnedOut() {
         knockOver();
+    }
+
+    public void ExtinguishFire()
+    {
+        //Flame was put out early
+        //print("flame on person: " + nameLabel.text +" was put out early");
+        scaredTimer = 0;
+        scared = false;
     }
 
     public void knockOver()
@@ -139,7 +148,7 @@ public class PeopleMover : MonoBehaviour {
 
         if (nameLabel.text == "Bob#3")
         {
-            Debug.Log("SpeedModifier is " + speedModifier + " for " + nameLabel.text);
+            //Debug.Log("SpeedModifier is " + speedModifier + " for " + nameLabel.text);
         }
         lastHeight = transform.position.y;
     }
