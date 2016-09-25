@@ -14,9 +14,11 @@ public class PeopleMover : MonoBehaviour {
     bool knockedOver = false;
 	public AudioSource scream;
     public static int numberID = 0;
+	FireIgnition fireScript;
     Text nameLabel;
 
     Vector3 scaredFrom;
+	Vector3 scaredFromFire;
 
     void OnTriggerEnter(Collider other) {
         Debug.Log("I've been entered by " + other.name);
@@ -38,19 +40,19 @@ public class PeopleMover : MonoBehaviour {
             for (int i = 0; i < hitList.Length; i++) {
                 if (hitList[i] != myCollider) {
                     PeopleMover pmScript = hitList[i].GetComponent<PeopleMover>();
+					scaredFromFire = pmScript.transform.position;  // this will use the closest person for the random scared location when they are on fire.
                     if (pmScript.IsKnockedOver()) {
-                        scared = true;
-                        scaredFrom = pmScript.transform.position;
-                        scaredTimer = scaredTimerDefault;
+						SetScare(pmScript.transform.position);
                     }
                 }
             }
 
             if(!scared && IsOnFire())
             {
-                scared = true;
-                scaredFrom = transform.position;
-                scaredTimer = scaredTimerDefault;
+//                scared = true;
+//                scaredFrom = transform.position;
+//                scaredTimer = scaredTimerDefault;
+				SetScare(scaredFromFire);
             }
 
             yield return new WaitForSeconds(0.2f);
@@ -61,9 +63,14 @@ public class PeopleMover : MonoBehaviour {
         return knockedOver;
     }
 
+	void SetScare(Vector3 position){
+		scared = true;
+		scaredFrom = position;
+		scaredTimer = scaredTimerDefault;
+	}
+
     public bool IsOnFire()
     {
-        FireIgnition fireScript = GetComponent<FireIgnition>();
         if(fireScript)
         {
             return fireScript.IsOnFire();
@@ -78,6 +85,7 @@ public class PeopleMover : MonoBehaviour {
         nameLabel.text = nameLabel.text + "#" + numberID;
         gameObject.name = nameLabel.text;
         numberID++;
+		fireScript = GetComponent<FireIgnition>();
     }
 
     private void ScaredBehaivor() {
@@ -125,7 +133,7 @@ public class PeopleMover : MonoBehaviour {
     void Update () {
         transform.position = WorldBounds.instance.ForceInbounds(transform.position);
         if (IsOnFire()) {
-            scared = true;
+			SetScare(scaredFromFire);
         }
         if (scared && knockedOver == false) {
             ScaredBehaivor();

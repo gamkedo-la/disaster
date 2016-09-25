@@ -98,7 +98,6 @@ public class FireIgnition : MonoBehaviour {
             //print("starting a (" + fireType.ToString() + ") fire on: (" + gameObject.name.ToString() + ") with a duration of (" + fireLifetime.ToString() + ") seconds");
             theFireCreated = Instantiate(firePrefab);
             theFireCreated.transform.parent = gameObject.transform;
-			SendMessage("Ignite", SendMessageOptions.DontRequireReceiver);
 
             switch (fireType)
             {
