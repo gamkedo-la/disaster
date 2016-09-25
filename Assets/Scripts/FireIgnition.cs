@@ -28,16 +28,10 @@ public class FireIgnition : MonoBehaviour {
     private bool isOnFire;
     private bool startingOnFire;
     private GameObject theFireCreated;
-    private PeopleMover thisPerson;
-    private bool isPerson;
 	// Use this for initialization
 	void Start () {
         startingOnFire = false;
         isOnFire = false;
-        if (GetComponentInParent<PeopleMover>() != null) {
-            thisPerson = GetComponentInParent<PeopleMover>();
-            isPerson = true;
-        }
     }
 	
 	// Update is called once per frame
@@ -104,7 +98,7 @@ public class FireIgnition : MonoBehaviour {
             //print("starting a (" + fireType.ToString() + ") fire on: (" + gameObject.name.ToString() + ") with a duration of (" + fireLifetime.ToString() + ") seconds");
             theFireCreated = Instantiate(firePrefab);
             theFireCreated.transform.parent = gameObject.transform;
-            thisPerson.MakeScared();
+			SendMessage("Ignite", SendMessageOptions.DontRequireReceiver);
 
             switch (fireType)
             {
