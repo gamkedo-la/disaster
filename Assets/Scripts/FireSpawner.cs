@@ -8,7 +8,7 @@ public class FireSpawner : MonoBehaviour {
     {
         METEOR,     //METEOR: Spawns a ring of fire around the current transform.position
         LIGHTNING,  //LIGHTNING: Spawn a single fire at the point of particle impact
-        VOLCANO     //VOLCANO: Spawn a single fire at point of particle impact. Or a series of fires as the lava move along the ground? 
+        VOLCANO     //VOLCANO: Spawn a single fire at point of particle impact. Or a series of fires as the lava moves along the ground? 
     }
     public FireSource sourceOfFire;
     public float ringRadius = 0.3f;
@@ -105,12 +105,8 @@ public class FireSpawner : MonoBehaviour {
             //Play particle collision sound? 
 
             //Set the nextFirePosition to create a fire - this will only create 1 fire per frame even if multiple particles are triggering on this frame
-            nextFirePosition = transform.position; //p.position is in local space, the lightning is being shot in the forward vector of the particle system. Hardcode the position correction for now, cause I don't know any other way to adjust.
-            nextFirePosition.y += -p.position.z;
-            nextFirePosition.x += p.position.x;
-            nextFirePosition.z += p.position.y;
-
-           // print("position of particle trigger " + p.position.ToString());
+            nextFirePosition = p.position;
+            
         }
 
     }
