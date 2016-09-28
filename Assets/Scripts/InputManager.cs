@@ -9,30 +9,22 @@ public class InputManager : MonoBehaviour {
     public GameObject tornado;
     public GameObject volcanoCreator;
     public GameObject deadBody;
+    public Screenshot_Handler screenShotHandler;
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
     public enum inputMode { None, Tornado, Storms, Meteor, Volcano };
     public inputMode currentAction = inputMode.None;
     GameObject focusedGO;
     GameObject cloud;
-    public bool isScreenshotPressed = false;
     public bool isHandInCloud = false;
     bool isStiring = false;
     int movementSmoothingFrames = 0;
     Vector3 prevPOS;
-    static int nIndex = 2;
-
-    [Header("Screenshot Display Options")]
-    [SerializeField]
-    private GameObject Display_SS;
-    [SerializeField]
-    private GameObject ReadyText_SS;
-    [SerializeField]
-    private GameObject SuccessText_SS;
-
+    
     // Use this for initialization
     void Awake () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        screenShotHandler = GetComponent<Screenshot_Handler>();
 	}
 
     void SpawnAndParentObject(GameObject toSpawn, bool lockedToHand, bool hasRB) {
@@ -179,27 +171,11 @@ public class InputManager : MonoBehaviour {
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            if(!isScreenshotPressed)
-            {
-                //Display capture ready message in the center of the screen
-                Display_SS.SetActive(true);
-                ReadyText_SS.SetActive(true);
-                SuccessText_SS.SetActive(false);
-                print("Create GUI Canvas... Ready to capture screen. Release trackpad when ready.");
-            }
-            isScreenshotPressed = true;
+            screenShotHandler.PressDown();
         }
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            if(isScreenshotPressed)
-            {
-                //isScreenshotPressed was previously true, we are now taking the screen shot. 
-                Display_SS.SetActive(false);
-                //Take screenshot
-                TakeScreenshot();
-                isScreenshotPressed = false;
-            }
-
+            screenShotHandler.PressUp();
         }
             //Debug.Log("movementDelta = " + movementDelta * 2000);
             prevPOS = transform.position;
@@ -245,70 +221,5 @@ public class InputManager : MonoBehaviour {
             rigidbody.angularVelocity = device.angularVelocity;
         }
         Destroy(rigidbody.gameObject, 4.0f);
-    }
-
-    void TakeScreenshot()
-    {
-        string fileName = GetScreenshotFilename();
-        string fileExtension = ".png";
-        string combinedFileName = fileName + fileExtension;
-        string customPath = GetScreenshotDirectory(); //Load custom path here
-        string directoryPath = "";
-        if (customPath == "")
-        {
-            directoryPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
-        }
-        else
-            directoryPath = customPath;
-        directoryPath = System.IO.Path.Combine(directoryPath, "DivineDisaster_Screenshots");
-        string pngPath = System.IO.Path.Combine(directoryPath, combinedFileName);
-
-        //Check if directory exists
-        if (!System.IO.Directory.Exists(directoryPath))
-        {
-            //Failed to find directory, lets create it
-            System.IO.Directory.CreateDirectory(directoryPath);
-        }
-        while (System.IO.File.Exists(pngPath))
-        {
-            //File already exists, create new index at end
-            combinedFileName = fileName + "_" + nIndex.ToString() + fileExtension;
-            pngPath = System.IO.Path.Combine(directoryPath, combinedFileName);
-            nIndex++;
-        }
-
-        Application.CaptureScreenshot(pngPath);
-        TextEditor te = new TextEditor();
-        te.text = pngPath;
-        te.SelectAll();
-        te.Copy();
-
-        StartCoroutine(DisplayScreenshotPostText());
-        print("Create GUI Canvas... Screenshot saved to : " + pngPath);
-    }
-
-    IEnumerator DisplayScreenshotPostText()
-    {
-        //Screenshot being taken, wait a little bit to post message, so the message isn't in the screenshot
-        yield return new WaitForSeconds(0.5f);
-        Display_SS.SetActive(true);
-        ReadyText_SS.SetActive(false);
-        SuccessText_SS.SetActive(true);
-        Display_SS.SendMessage("DisableAfterFade", true);
-        Display_SS.SendMessage("StartFade");
-        
-    }
-
-    string GetScreenshotFilename()
-    {
-        //Create interface for user to set file name preference
-        return "Test_Capture";
-    }
-
-    string GetScreenshotDirectory()
-    {
-        //Create interface for user to set directory path 
-        return "";
     }
 }

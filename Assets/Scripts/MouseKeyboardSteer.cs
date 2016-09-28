@@ -3,11 +3,13 @@ using System.Collections;
 
 public class MouseKeyboardSteer : MonoBehaviour {
     public GameObject meteorToThrow;
+    public Screenshot_Handler screenShotHandler;
     float camLat = 0.0f;
     float camLon = 0.0f;
+
 	// Use this for initialization
 	void Start () {
-	
+        screenShotHandler = GetComponent<Screenshot_Handler>();
 	}
 	
 	// Update is called once per frame
@@ -26,5 +28,11 @@ public class MouseKeyboardSteer : MonoBehaviour {
             Rigidbody rb = tempGO.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 40.0f);
         }
+
+        if(Input.GetKeyDown(KeyCode.P))
+            screenShotHandler.PressDown();
+
+        if (Input.GetKeyUp(KeyCode.P))
+            screenShotHandler.PressUp();
     }
 }
