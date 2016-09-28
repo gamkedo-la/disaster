@@ -22,6 +22,14 @@ public class InputManager : MonoBehaviour {
     Vector3 prevPOS;
     static int nIndex = 2;
 
+    [Header("Screenshot Display Options")]
+    [SerializeField]
+    private GameObject Display_SS;
+    [SerializeField]
+    private GameObject ReadyText_SS;
+    [SerializeField]
+    private GameObject SuccessText_SS;
+
     // Use this for initialization
     void Awake () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -174,6 +182,9 @@ public class InputManager : MonoBehaviour {
             if(!isScreenshotPressed)
             {
                 //Display capture ready message in the center of the screen
+                Display_SS.SetActive(true);
+                ReadyText_SS.SetActive(true);
+                SuccessText_SS.SetActive(false);
                 print("Create GUI Canvas... Ready to capture screen. Release trackpad when ready.");
             }
             isScreenshotPressed = true;
@@ -183,11 +194,9 @@ public class InputManager : MonoBehaviour {
             if(isScreenshotPressed)
             {
                 //isScreenshotPressed was previously true, we are now taking the screen shot. 
-
+                Display_SS.SetActive(false);
                 //Take screenshot
                 TakeScreenshot();
-
-                //Display success or fail message
                 isScreenshotPressed = false;
             }
 
@@ -270,7 +279,25 @@ public class InputManager : MonoBehaviour {
         }
 
         Application.CaptureScreenshot(pngPath);
+        TextEditor te = new TextEditor();
+        te.text = pngPath;
+        te.SelectAll();
+        te.Copy();
+
+        StartCoroutine(DisplayScreenshotPostText());
         print("Create GUI Canvas... Screenshot saved to : " + pngPath);
+    }
+
+    IEnumerator DisplayScreenshotPostText()
+    {
+        //Screenshot being taken, wait a little bit to post message, so the message isn't in the screenshot
+        yield return new WaitForSeconds(0.5f);
+        Display_SS.SetActive(true);
+        ReadyText_SS.SetActive(false);
+        SuccessText_SS.SetActive(true);
+        Display_SS.SendMessage("DisableAfterFade", true);
+        Display_SS.SendMessage("StartFade");
+        
     }
 
     string GetScreenshotFilename()
