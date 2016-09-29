@@ -137,7 +137,7 @@ public class FireIgnition : MonoBehaviour {
             }
 
             //set position and move above burning object
-            Vector3 newPosition = new Vector3(0.0f, 0.8f, 0.0f);
+            Vector3 newPosition = new Vector3(0.0f, 0.0f, 0.0f);
             theFireCreated.transform.localPosition = newPosition;
         }
     }
