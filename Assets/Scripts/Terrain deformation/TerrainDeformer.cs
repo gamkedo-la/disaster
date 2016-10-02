@@ -31,6 +31,7 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
     private int m_xSize;
     private int m_ySize;
 
+	public float RadiusWorldUnits { get { return m_radiusWorldUnits; } }
 
     void Awake()
     {

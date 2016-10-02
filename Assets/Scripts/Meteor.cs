@@ -22,7 +22,7 @@ public class Meteor : MonoBehaviour {
         {
             FireSpawner fireScript = fireRing.GetComponent<FireSpawner>();
             if(fireScript)
-                fireScript.ringRadius = deformerScript.GetRadiusWorldUnits();
+                fireScript.ringRadius = deformerScript.RadiusWorldUnits;
         }
 
         Destroy(fireRing, 10);
