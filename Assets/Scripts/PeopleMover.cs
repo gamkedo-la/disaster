@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PeopleMover : MonoBehaviour {
     public Transform childTransform;
@@ -14,6 +15,9 @@ public class PeopleMover : MonoBehaviour {
     bool knockedOver = false;
 	public AudioSource scream;
     public static int numberID = 0;
+	public TextAsset namesFile;
+	List <string> namesList;
+	string[] names;
 	FireIgnition fireScript;
     Text nameLabel;
 
@@ -82,10 +86,16 @@ public class PeopleMover : MonoBehaviour {
         StartCoroutine(AIReact());
         lastHeight = Terrain.activeTerrain.SampleHeight(transform.position) + Terrain.activeTerrain.transform.position.y;
         nameLabel = GetComponentInChildren<Text>();
-        nameLabel.text = nameLabel.text + "#" + numberID;
+		string content = namesFile.text;
+		namesList = new List<string> (content.Split ('\n'));
+		names = namesList.ToArray ();
+
+		nameLabel.text = names[Random.Range (0, names.Length)];
         gameObject.name = nameLabel.text;
         numberID++;
 		fireScript = GetComponent<FireIgnition>();
+
+
     }
 
     private void ScaredBehaivor() {
