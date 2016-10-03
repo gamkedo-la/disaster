@@ -20,7 +20,8 @@ public class PeopleMover : MonoBehaviour {
 	string[] names;
 	FireIgnition fireScript;
     Text nameLabel;
-
+    public bool wasJustOnFire = false;
+    public int teamNumber;
     Vector3 scaredFrom;
 	Vector3 scaredFromFire;
 
@@ -53,14 +54,21 @@ public class PeopleMover : MonoBehaviour {
 
             if(!scared && IsOnFire())
             {
-//                scared = true;
-//                scaredFrom = transform.position;
-//                scaredTimer = scaredTimerDefault;
 				SetScare(scaredFromFire);
             }
 
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void SetTeam(int team) {
+        teamNumber = team;
+    }
+
+    IEnumerator TemporarilyFireproof() {
+        wasJustOnFire = true;
+        yield return new WaitForSeconds(2.0f);
+        wasJustOnFire = false;
     }
 
     public bool IsKnockedOver() {
@@ -90,11 +98,10 @@ public class PeopleMover : MonoBehaviour {
 		namesList = new List<string> (content.Split ('\n'));
 		names = namesList.ToArray ();
 
-		nameLabel.text = names[Random.Range (0, names.Length)];
+		nameLabel.text = teamNumber + ": " + names[Random.Range (0, names.Length)];
         gameObject.name = nameLabel.text;
         numberID++;
 		fireScript = GetComponent<FireIgnition>();
-
 
     }
 
@@ -114,7 +121,14 @@ public class PeopleMover : MonoBehaviour {
 
     //The fire on this person burned out, it's entire lifetime has passed before being extinguished so the person has died. 
     public void FireBurnedOut() {
-        knockOver();
+        if (Random.Range(0, 100) < 30)
+        {
+            knockOver();
+        }
+        else {
+            StartCoroutine(TemporarilyFireproof());
+        }
+        
     }
 
     public void ExtinguishFire()
@@ -164,10 +178,6 @@ public class PeopleMover : MonoBehaviour {
         float slopeSmoothK = 0.2f;
         speedModifier = slopeSmoothK * speedModifier + (1.0f - slopeSmoothK) * speedModifierTarget;
 
-        if (nameLabel.text == "Bob#3")
-        {
-            //Debug.Log("SpeedModifier is " + speedModifier + " for " + nameLabel.text);
-        }
         lastHeight = transform.position.y;
     }
 }

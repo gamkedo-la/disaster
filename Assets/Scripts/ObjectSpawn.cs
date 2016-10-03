@@ -23,7 +23,10 @@ public class ObjectSpawn : MonoBehaviour {
             tempGo.transform.position = newSpot;
 
             tempGo.transform.parent = transform;
-
+            PeopleMover pmScript = tempGo.GetComponent<PeopleMover>();
+            if (pmScript) {
+                pmScript.SetTeam(i < howManyObjectsToSpawn / 2 ? 0 : 1);
+            }
             objectList.Add(tempGo);
         }
                 

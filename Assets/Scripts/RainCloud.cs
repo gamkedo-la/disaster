@@ -5,6 +5,10 @@ public class RainCloud : MonoBehaviour {
 
     public ParticleSystem rainEffect;
 
+    public bool IsRaining() {
+        return rainEffect.isPlaying;
+    }
+
     public void StartStorm() {
         rainEffect.Play();
     }

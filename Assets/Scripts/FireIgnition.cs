@@ -88,6 +88,12 @@ public class FireIgnition : MonoBehaviour {
     {
         if(!isOnFire)
         {
+            PeopleMover myPMS = GetComponent<PeopleMover>();
+            if (myPMS != null) {
+                if (myPMS.wasJustOnFire) {
+                    return;
+                }
+            }
             isOnFire = true;
             startingOnFire = false;
             //Start a fire

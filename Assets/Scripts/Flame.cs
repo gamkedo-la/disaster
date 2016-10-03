@@ -22,11 +22,18 @@ public class Flame : MonoBehaviour {
         //check if collider belongs to the "Rain" gameObject, else try to start it on fire
         if (other.gameObject.name == "Rain")
         {
+            RainCloud cloudScript = other.GetComponentInParent<RainCloud>();
+
             //Play rain on fire sound
             //TODO: add rain sound
 
             //Tell yourself and your parents the fire is being extinguished
-            SendMessageUpwards("ExtinguishFire", SendMessageOptions.DontRequireReceiver);
+            if (cloudScript) {
+                if (cloudScript.IsRaining()) {
+                    SendMessageUpwards("ExtinguishFire", SendMessageOptions.DontRequireReceiver);
+                }
+            }
+            
         }
         else
             CheckForIgnition(other.gameObject);

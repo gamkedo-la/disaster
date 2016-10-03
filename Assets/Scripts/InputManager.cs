@@ -58,12 +58,12 @@ public class InputManager : MonoBehaviour {
         //    Debug.Log("You're holding 'Touch' on the trigger");
         //}
 
-        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+        /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
             GameObject db = (GameObject)GameObject.Instantiate(deadBody);
             db.transform.position = transform.position;
             db.GetComponent<PeopleMover>().knockOver();
-        }
+        }*/
 
         //if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         //{
