@@ -16,4 +16,8 @@ public class RainCloud : MonoBehaviour {
     public void StopStorm() {
         rainEffect.Stop();
     }
+
+    public void LateUpdate() {
+        transform.rotation = Quaternion.identity;
+    }
 }
