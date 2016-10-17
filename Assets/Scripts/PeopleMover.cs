@@ -24,6 +24,7 @@ public class PeopleMover : MonoBehaviour {
     public int teamNumber;
     Vector3 scaredFrom;
 	Vector3 scaredFromFire;
+    bool screamed = false;
 
     void OnTriggerEnter(Collider other) {
         Debug.Log("I've been entered by " + other.name);
@@ -110,12 +111,14 @@ public class PeopleMover : MonoBehaviour {
         scaredOffset.y = 0.0f;
         transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed * speedModifier;
         scaredTimer -= Time.deltaTime;
-		if (scream.isPlaying == false) {
+		if (scream.isPlaying == false && screamed == false) {
             scream.pitch = Random.Range(0.6f, 1.6f);
 			scream.Play ();
+            screamed = true;
 		}
         if (scaredTimer < 0) {
             scared = false;
+            screamed = false;
         }
     }
 
