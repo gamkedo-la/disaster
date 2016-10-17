@@ -25,6 +25,7 @@ public class PeopleMover : MonoBehaviour {
     Vector3 scaredFrom;
 	Vector3 scaredFromFire;
     bool screamed = false;
+	public Renderer rend;
 
     void OnTriggerEnter(Collider other) {
         Debug.Log("I've been entered by " + other.name);
@@ -103,6 +104,12 @@ public class PeopleMover : MonoBehaviour {
         gameObject.name = nameLabel.text;
         numberID++;
 		fireScript = GetComponent<FireIgnition>();
+		rend.material.shader = Shader.Find ("Standard");
+		if (teamNumber == 0) {
+			rend.material.SetColor ("_Color", Color.green);
+		} else {
+			rend.material.SetColor ("_Color", Color.red);
+		}
 
     }
 
