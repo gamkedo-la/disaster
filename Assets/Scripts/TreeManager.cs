@@ -12,7 +12,9 @@ public class TreeManager : MonoBehaviour {
             Debug.Log("Tree is on fire!");
 
             for (int i = 0; i < transform.childCount; i++) {
-                transform.GetChild(i).GetComponent<MeshRenderer>().material = burnedMat;
+				if (transform.GetChild (i).name.Contains ("tree")) {
+					transform.GetChild(i).GetComponent<MeshRenderer>().material = burnedMat;
+				}
             }
         }
     }
