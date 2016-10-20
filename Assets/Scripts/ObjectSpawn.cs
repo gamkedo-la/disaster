@@ -7,6 +7,7 @@ public class ObjectSpawn : MonoBehaviour {
     public int howManyObjectsToSpawn = 20;
     public float creationRadius = 3.0f;
     public GameObject objectPrefab;
+	public int team = 0;
 
     List<GameObject> objectList;
 	// Use this for initialization
@@ -25,7 +26,7 @@ public class ObjectSpawn : MonoBehaviour {
             tempGo.transform.parent = transform;
             PeopleMover pmScript = tempGo.GetComponent<PeopleMover>();
             if (pmScript) {
-                pmScript.SetTeam(i < howManyObjectsToSpawn / 2 ? 0 : 1);
+				pmScript.SetTeam(team);
             }
             objectList.Add(tempGo);
         }
