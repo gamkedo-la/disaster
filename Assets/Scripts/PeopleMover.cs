@@ -26,6 +26,8 @@ public class PeopleMover : MonoBehaviour {
 	Vector3 scaredFromFire;
     bool screamed = false;
 	public Renderer rend;
+    bool underwater = false;
+    Transform water;
 
     void OnTriggerEnter(Collider other) {
         Debug.Log("I've been entered by " + other.name);
@@ -99,8 +101,9 @@ public class PeopleMover : MonoBehaviour {
 		string content = namesFile.text;
 		namesList = new List<string> (content.Split ('\n'));
 		names = namesList.ToArray ();
+        water = GameObject.Find("Water4Advanced").GetComponent<Transform>();
 
-		nameLabel.text = teamNumber + ": " + names[Random.Range (0, names.Length)];
+        nameLabel.text = teamNumber + ": " + names[Random.Range (0, names.Length)];
         gameObject.name = nameLabel.text;
         numberID++;
 		fireScript = GetComponent<FireIgnition>();
@@ -172,7 +175,10 @@ public class PeopleMover : MonoBehaviour {
         if (scared && knockedOver == false) {
             ScaredBehaivor();
         }
-        
+        if (transform.position.y < water.transform.position.y) {
+            ExtinguishFire();
+            knockOver();
+        }
 	}
 
     void FixedUpdate() {
