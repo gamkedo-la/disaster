@@ -30,15 +30,18 @@ public class PeopleMover : MonoBehaviour {
     Transform water;
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("I've been entered by " + other.name);
-        if (other.GetComponent<Meteor>() && knockedOver == false)
-        {
-            knockOver();
-        }
-        else if (other.name == "TornadoBody" && knockedOver == false) {
-            knockOver();
-        }
-    }
+		if (teamNumber > 0) {
+			Debug.Log("I've been entered by " + other.name);
+			if (other.GetComponent<Meteor>() && knockedOver == false)
+			{
+				knockOver();
+			}
+			else if (other.name == "TornadoBody" && knockedOver == false) {
+				knockOver();
+			}
+		}
+	}
+        
 
     IEnumerator AIReact() {
         yield return new WaitForSeconds(Random.Range(0.0f, 0.2f));
@@ -87,7 +90,7 @@ public class PeopleMover : MonoBehaviour {
 
     public bool IsOnFire()
     {
-		if (underwater) {
+		if (underwater || teamNumber == 0) {
 			return false;
 		}
 		if(fireScript)
@@ -184,6 +187,9 @@ public class PeopleMover : MonoBehaviour {
 			fireScript.ExtinguishFire ();
 			wasJustOnFire = true;
         }
+		if (teamNumber == 0) {
+			wasJustOnFire = true;
+		}
 	}
 
     void FixedUpdate() {
