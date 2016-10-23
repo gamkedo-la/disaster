@@ -18,7 +18,7 @@ public class PeopleMover : MonoBehaviour {
 	public TextAsset namesFile;
 	List <string> namesList;
 	string[] names;
-	FireIgnition fireScript;
+	public FireIgnition fireScript;
     Text nameLabel;
     public bool wasJustOnFire = false;
     public int teamNumber;
@@ -87,7 +87,10 @@ public class PeopleMover : MonoBehaviour {
 
     public bool IsOnFire()
     {
-        if(fireScript)
+		if (underwater) {
+			return false;
+		}
+		if(fireScript)
         {
             return fireScript.IsOnFire();
         }
@@ -178,6 +181,8 @@ public class PeopleMover : MonoBehaviour {
         if (transform.position.y < water.transform.position.y) {
             ExtinguishFire();
             knockOver();
+			fireScript.ExtinguishFire ();
+			wasJustOnFire = true;
         }
 	}
 
