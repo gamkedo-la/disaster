@@ -11,10 +11,12 @@ public class RainCloud : MonoBehaviour {
 
     public void StartStorm() {
         rainEffect.Play();
+		GetComponentInChildren<AudioSource> ().Play ();
     }
 
     public void StopStorm() {
         rainEffect.Stop();
+		GetComponentInChildren<AudioSource> ().Stop ();
     }
 
     public void LateUpdate() {

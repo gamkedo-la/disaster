@@ -96,10 +96,11 @@ public class InputManager : MonoBehaviour {
         {
             Debug.Log("You activated 'PressUp' on the trigger");
             switch (currentAction) {
-                case inputMode.Meteor:
-                    focusedGO.gameObject.transform.SetParent(null);
-                    Rigidbody meteorRB = focusedGO.gameObject.GetComponent<Rigidbody>();
-                    meteorRB.isKinematic = false;
+				case inputMode.Meteor:
+					focusedGO.gameObject.transform.SetParent (null);
+					Rigidbody meteorRB = focusedGO.gameObject.GetComponent<Rigidbody> ();
+					meteorRB.isKinematic = false;
+					focusedGO.GetComponent<AudioSource> ().Play ();
                     tossObject(meteorRB);
                     break;
                 case inputMode.Tornado:
@@ -112,7 +113,11 @@ public class InputManager : MonoBehaviour {
                     RainCloud storm = cloud.GetComponent<RainCloud>();
                     if (storm != null)
                     {
-                        storm.StartStorm();
+					if (storm.IsRaining ()) {
+						storm.StopStorm ();
+					} else {
+						storm.StartStorm();
+					}
                     }
                     else {
                         cloud.GetComponent<ThunderCloud>().StartStorm();

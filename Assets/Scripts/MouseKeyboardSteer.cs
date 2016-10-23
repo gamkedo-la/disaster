@@ -31,6 +31,7 @@ public class MouseKeyboardSteer : MonoBehaviour {
             tempGO.transform.position = transform.position;
             Rigidbody rb = tempGO.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 40.0f);
+			tempGO.GetComponent<AudioSource> ().Play ();
         }
 
 		if (Input.GetKeyDown (KeyCode.T)) {
