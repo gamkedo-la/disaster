@@ -121,7 +121,13 @@ public class TerrainDeformer : MonoBehaviour, ITerrainDeformer
         {
             SetHeights(sampleHeights, 1f);
             SetScar(sampleScarBlend, 1f);
-
+            Debug.Log("I'm the first destroy");
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                transform.GetChild(i).transform.rotation = Quaternion.identity;
+                Debug.Log(transform.GetChild(i).name);
+                transform.GetChild(i).parent = null;
+            }
             Destroy(gameObject);
             //m_rigidbody.isKinematic = true;
         }
