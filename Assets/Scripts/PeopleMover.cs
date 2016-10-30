@@ -28,6 +28,7 @@ public class PeopleMover : MonoBehaviour {
 	public Renderer rend;
     bool underwater = false;
     Transform water;
+	public SteamManager steam;
 
     void OnTriggerEnter(Collider other) {
 		if (teamNumber > 0) {
@@ -186,6 +187,7 @@ public class PeopleMover : MonoBehaviour {
             knockOver();
 			fireScript.ExtinguishFire ();
 			wasJustOnFire = true;
+			steam.SteamOn ();
         }
 		if (teamNumber == 0) {
 			wasJustOnFire = true;
