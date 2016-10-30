@@ -20,11 +20,15 @@ public class InputManager : MonoBehaviour {
     bool isStiring = false;
     int movementSmoothingFrames = 0;
     Vector3 prevPOS;
-    
+    bool buttonEnabled;
+    public GameObject buttonHolder;
+
     // Use this for initialization
     void Awake () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         screenShotHandler = GetComponent<Screenshot_Handler>();
+        buttonEnabled = false;
+        buttonHolder.SetActive(false);
 	}
 
     void SpawnAndParentObject(GameObject toSpawn, bool lockedToHand, bool hasRB) {
@@ -54,9 +58,17 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         device = SteamVR_Controller.Input((int)trackedObj.index);
-        //if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger)) {
-        //    Debug.Log("You're holding 'Touch' on the trigger");
-        //}
+        if (device.GetTouch(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
+            if (buttonEnabled == false)
+            {
+                buttonEnabled = true;
+                buttonHolder.SetActive(true);
+            }
+            else if (buttonEnabled == true) {
+                buttonEnabled = false;
+                buttonHolder.SetActive(false);
+            }
+        }
 
         /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
