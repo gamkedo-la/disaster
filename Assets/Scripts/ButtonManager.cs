@@ -11,7 +11,7 @@ public class ButtonManager : MonoBehaviour {
         if (other.tag == "RightController") {
             if (restartLevel)
             {
-                SceneManager.LoadScene("Scene 2");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else if (quitGame) {
                 Application.Quit();

@@ -182,7 +182,7 @@ public class PeopleMover : MonoBehaviour {
         if (scared && knockedOver == false) {
             ScaredBehaivor();
         }
-        if (transform.position.y < water.transform.position.y) {
+        if (transform.position.y < water.transform.position.y && knockedOver == false) {
             ExtinguishFire();
             knockOver();
 			fireScript.ExtinguishFire ();
