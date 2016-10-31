@@ -9,12 +9,19 @@ public class WorldBounds : MonoBehaviour {
     public Transform edgeE;
     public Transform edgeS;
     public Transform edgeW;
+    public Transform water;
 
     private float Nz;
     private float Ex;
     private float Sz;
     private float Wx;
+    private float waterY;
+    public float spawnMarginAboveWater = 0.05f;
 	List<float> boundries;
+
+    public bool SafelyAboveWater(Vector3 locationToCheck) {
+        return locationToCheck.y > spawnMarginAboveWater + waterY;
+    }
 
     public Vector3 ForceInbounds(Vector3 before) {
         Vector3 after = before;
@@ -50,6 +57,7 @@ public class WorldBounds : MonoBehaviour {
         Ex = edgeE.position.x;
         Sz = edgeS.position.z;
         Wx = edgeW.position.x;
+        waterY = water.position.y;
 		boundries = new List<float> ();
 	}
 }

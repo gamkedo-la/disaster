@@ -187,7 +187,7 @@ public class PeopleMover : MonoBehaviour {
             knockOver();
 			fireScript.ExtinguishFire ();
 			wasJustOnFire = true;
-			steam.SteamOn ();
+			//steam.SteamOn ();
         }
 		if (teamNumber == 0) {
 			wasJustOnFire = true;
