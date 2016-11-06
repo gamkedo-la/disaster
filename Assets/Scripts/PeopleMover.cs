@@ -28,7 +28,8 @@ public class PeopleMover : MonoBehaviour {
 	public Renderer rend;
     bool underwater = false;
     Transform water;
-	public SteamManager steam;
+	public GameObject steam;
+	public AudioClip[] screams;
 
     void OnTriggerEnter(Collider other) {
 		if (teamNumber > 0) {
@@ -129,6 +130,7 @@ public class PeopleMover : MonoBehaviour {
         transform.position += scaredOffset.normalized * Time.deltaTime * scaredSpeed * speedModifier;
         scaredTimer -= Time.deltaTime;
 		if (scream.isPlaying == false && screamed == false) {
+			scream.clip = screams[Random.Range(0, screams.Length)];
             scream.pitch = Random.Range(0.6f, 1.6f);
 			scream.Play ();
             screamed = true;
@@ -187,7 +189,9 @@ public class PeopleMover : MonoBehaviour {
             knockOver();
 			fireScript.ExtinguishFire ();
 			wasJustOnFire = true;
-			//steam.SteamOn ();
+			steam = (GameObject)GameObject.Instantiate (steam);
+			steam.transform.position = transform.position;
+			steam.GetComponent<SteamManager> ().SteamOn ();
         }
 		if (teamNumber == 0) {
 			wasJustOnFire = true;
