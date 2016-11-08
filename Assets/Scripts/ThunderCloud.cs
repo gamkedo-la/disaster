@@ -5,14 +5,11 @@ public class ThunderCloud : MonoBehaviour {
 
     public ParticleSystem lightningEffect;
     public ParticleSystem fireEffect;
-	public AudioClip  lightning;
-	public AudioClip thunder;
 	public AudioSource player;
 
     public void StartStorm()
     {
 		StartCoroutine (ThunderStormSounds ());
-
     }
 
     public void StopStorm()
@@ -27,12 +24,9 @@ public class ThunderCloud : MonoBehaviour {
     }
 
 	IEnumerator ThunderStormSounds(){
-		player.clip = thunder;
-		player.Play ();
-		yield return new WaitForSeconds (thunder.length);
 		lightningEffect.Play();
 		fireEffect.Play();
-		player.clip = lightning;
+		yield return new WaitForSeconds (1);
 		player.Play ();
 	}
 }
