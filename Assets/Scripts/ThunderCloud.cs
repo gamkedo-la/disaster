@@ -26,7 +26,7 @@ public class ThunderCloud : MonoBehaviour {
 	IEnumerator ThunderStormSounds(){
 		lightningEffect.Play();
 		fireEffect.Play();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.15f);
 		player.Play ();
 	}
 }
