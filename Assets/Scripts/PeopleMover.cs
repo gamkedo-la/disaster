@@ -30,15 +30,26 @@ public class PeopleMover : MonoBehaviour {
     Transform water;
 	public GameObject steam;
 	public AudioClip[] screams;
+    int enemyArrowLayer;
 
     void OnTriggerEnter(Collider other) {
-		if (teamNumber > 0) {
-			Debug.Log("I've been entered by " + other.name);
-			if (other.GetComponent<Meteor>() && knockedOver == false)
+        if (other.gameObject.layer == enemyArrowLayer)
+        {
+            Debug.Log("Arrow hit me");
+            Destroy(other.gameObject);
+            knockOver();
+            return;
+        }
+        else {
+            Debug.Log("Ignoring collision because arrow layer is " + other.gameObject.layer + " and enemyArrowLayer is " + enemyArrowLayer);
+        }
+
+        if (teamNumber > 0 && knockedOver == false) {
+			if (other.GetComponent<Meteor>())
 			{
 				knockOver();
 			}
-			else if (other.name == "TornadoBody" && knockedOver == false) {
+			else if (other.name == "TornadoBody") {
 				knockOver();
 			}
 		}
@@ -110,6 +121,9 @@ public class PeopleMover : MonoBehaviour {
 		namesList = new List<string> (content.Split ('\n'));
 		names = namesList.ToArray ();
         water = GameObject.Find("Water4Advanced").GetComponent<Transform>();
+
+        int enemyTeamNumber = (teamNumber == 0 ? 1 : 0);
+        enemyArrowLayer = LayerMask.NameToLayer("ArrowTeam" + enemyTeamNumber);
 
         nameLabel.text = teamNumber + ": " + names[Random.Range (0, names.Length)];
         gameObject.name = nameLabel.text;
@@ -184,7 +198,7 @@ public class PeopleMover : MonoBehaviour {
         if (scared && knockedOver == false) {
             ScaredBehaivor();
         }
-        if (transform.position.y < water.transform.position.y && knockedOver == false) {
+        if (transform.position.y < water.transform.position.y && knockedOver == false && IsOnFire() == false) {
             ExtinguishFire();
             knockOver();
 			fireScript.ExtinguishFire ();
