@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour {
     public bool quitGame;
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("Button manager here and someone poked me!");
+        Debug.Log("Button manager here on " + name + " and someone " + other.name + " poked me!");
         if (other.tag == "RightController") {
             if (restartLevel)
             {

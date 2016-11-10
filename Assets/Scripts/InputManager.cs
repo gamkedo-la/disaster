@@ -28,8 +28,14 @@ public class InputManager : MonoBehaviour {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         screenShotHandler = GetComponent<Screenshot_Handler>();
         buttonEnabled = false;
-        buttonHolder.SetActive(false);
-	}
+        if (buttonHolder != null)
+        {
+            buttonHolder.SetActive(false);
+        }
+        else {
+            Debug.Log("for " + name + " there was no button Holder");
+        }
+    }
 
     void SpawnAndParentObject(GameObject toSpawn, bool lockedToHand, bool hasRB) {
         focusedGO = (GameObject)GameObject.Instantiate(toSpawn);
@@ -55,10 +61,27 @@ public class InputManager : MonoBehaviour {
         isHandInCloud = false;
     }
 
+    void Update() {
+        device = SteamVR_Controller.Input((int)trackedObj.index);
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController")
+        {
+            if (buttonEnabled == false)
+            {
+                buttonEnabled = true;
+                buttonHolder.SetActive(true);
+            }
+            else if (buttonEnabled == true)
+            {
+                buttonEnabled = false;
+                buttonHolder.SetActive(false);
+            }
+        }
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () {
         device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (device.GetTouch(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
             if (buttonEnabled == false)
             {
                 buttonEnabled = true;
