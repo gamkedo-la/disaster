@@ -198,14 +198,19 @@ public class PeopleMover : MonoBehaviour {
         if (scared && knockedOver == false) {
             ScaredBehaivor();
         }
-        if (transform.position.y < water.transform.position.y && knockedOver == false && IsOnFire() == false) {
-            ExtinguishFire();
+        if (transform.position.y < water.transform.position.y && knockedOver == false) {
+            
             knockOver();
-			fireScript.ExtinguishFire ();
-			wasJustOnFire = true;
-			steam = (GameObject)GameObject.Instantiate (steam);
-			steam.transform.position = transform.position;
-			steam.GetComponent<SteamManager> ().SteamOn ();
+
+			if (IsOnFire ()) {
+				fireScript.ExtinguishFire ();
+				wasJustOnFire = true;
+				steam = (GameObject)GameObject.Instantiate (steam);
+				steam.transform.position = transform.position;
+				steam.GetComponent<SteamManager> ().SteamOn ();
+				ExtinguishFire();
+			}
+
         }
 		if (teamNumber == 0) {
 			wasJustOnFire = true;
