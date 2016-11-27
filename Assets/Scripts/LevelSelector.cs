@@ -12,7 +12,7 @@ public class LevelSelector : MonoBehaviour {
 			if (currentAction == levelSelect.Level1) {
 				SceneManager.LoadScene ("Scene2");
 			} else if (currentAction == levelSelect.Level2) {
-				SceneManager.LoadScene ("Level3");
+				SceneManager.LoadScene ("Level 3");
 			}	
 		}
 	}
