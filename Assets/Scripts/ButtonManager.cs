@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 public class ButtonManager : MonoBehaviour {
     public bool restartLevel;
     public bool quitGame;
+	public bool MainMenu;
 
     void OnTriggerEnter(Collider other) {
         Debug.Log("Button manager here on " + name + " and someone " + other.name + " poked me!");
         if (other.tag == "RightController") {
-            if (restartLevel)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-            else if (quitGame) {
-                Application.Quit();
-            }
-
+			if (restartLevel) {
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+			} else if (quitGame) {
+				Application.Quit ();
+			} else if (MainMenu) {
+				SceneManager.LoadScene ("MainMenu");
+			}
         }
     }
 
