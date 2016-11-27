@@ -10,7 +10,7 @@ public class LevelSelector : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "RightController" || other.tag == "LeftController") {
 			if (currentAction == levelSelect.Level1) {
-				SceneManager.LoadScene ("Scene2");
+				SceneManager.LoadScene ("Scene 2");
 			} else if (currentAction == levelSelect.Level2) {
 				SceneManager.LoadScene ("Level 3");
 			}	
