@@ -8,6 +8,7 @@ public class Meteor : MonoBehaviour {
     public GameObject explosionFireRing;
 
 	private void Explode(){
+        Debug.Log("In Explode");
 		GameObject fire = Instantiate (explosionFire, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (fire, 10);
 

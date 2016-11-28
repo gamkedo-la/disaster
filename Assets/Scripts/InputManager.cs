@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour {
     Vector3 prevPOS;
     bool buttonEnabled;
     public GameObject buttonHolder;
+    bool meteorPresent = false;
 
     // Use this for initialization
     void Awake () {
@@ -113,7 +114,11 @@ public class InputManager : MonoBehaviour {
             else if (transform.position.y > Camera.main.transform.position.y + 0.3f)
             {
                 currentAction = inputMode.Meteor;
-                SpawnAndParentObject(meteor, true, true);
+                if (meteorPresent == false) {
+                    SpawnAndParentObject(meteor, true, true);
+                    meteorPresent = true;
+                }
+                
             }
             else if (transform.position.y < Terrain.activeTerrain.SampleHeight(transform.position) + Terrain.activeTerrain.transform.position.y)
             {
@@ -137,6 +142,7 @@ public class InputManager : MonoBehaviour {
 					meteorRB.isKinematic = false;
 					focusedGO.GetComponent<AudioSource> ().Play ();
                     tossObject(meteorRB);
+                    meteorPresent = false;
                     break;
                 case inputMode.Tornado:
                     TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
