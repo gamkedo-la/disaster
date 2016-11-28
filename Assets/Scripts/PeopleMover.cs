@@ -35,13 +35,13 @@ public class PeopleMover : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == enemyArrowLayer)
         {
-            Debug.Log("Arrow hit me");
+            //Debug.Log("Arrow hit me");
             Destroy(other.gameObject);
             knockOver();
             return;
         }
         else {
-            Debug.Log("Ignoring collision because arrow layer is " + other.gameObject.layer + " and enemyArrowLayer is " + enemyArrowLayer);
+            //Debug.Log("Ignoring collision because arrow layer is " + other.gameObject.layer + " and enemyArrowLayer is " + enemyArrowLayer);
         }
 
         if (teamNumber > 0 && knockedOver == false) {

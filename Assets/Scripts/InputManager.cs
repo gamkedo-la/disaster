@@ -64,8 +64,12 @@ public class InputManager : MonoBehaviour {
 
     void Update() {
         device = SteamVR_Controller.Input((int)trackedObj.index);
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu)){
+            Debug.Log("You hit the menu button!");
+        }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController")
         {
+            Debug.Log("Hit menu on left controller");
             if (buttonEnabled == false)
             {
                 buttonEnabled = true;
@@ -82,7 +86,7 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
+       /* if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
             if (buttonEnabled == false)
             {
                 buttonEnabled = true;
@@ -92,7 +96,7 @@ public class InputManager : MonoBehaviour {
                 buttonEnabled = false;
                 buttonHolder.SetActive(false);
             }
-        }
+        }*/
 
         /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
