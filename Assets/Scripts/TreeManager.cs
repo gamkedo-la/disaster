@@ -4,18 +4,21 @@ using System.Collections;
 public class TreeManager : MonoBehaviour {
 
     bool isBurntYet = false; 
-    public Material burnedMat;
+	public GameObject burnedTree;
+	public GameObject liveTree;
+
+	void Awake(){
+		burnedTree.SetActive (false);
+		Vector3 euler = transform.eulerAngles;
+		euler.y = Random.Range (0.0f, 360.0f);
+		transform.eulerAngles = euler;
+	}
 
     public void FireBurnedOut() {
         if (isBurntYet == false) {
             isBurntYet = true;
-            Debug.Log("Tree is on fire!");
-
-            for (int i = 0; i < transform.childCount; i++) {
-				if (transform.GetChild (i).name.Contains ("tree")) {
-					transform.GetChild(i).GetComponent<MeshRenderer>().material = burnedMat;
-				}
-            }
+			burnedTree.SetActive (true);
+			liveTree.SetActive (false);
         }
     }
 }
