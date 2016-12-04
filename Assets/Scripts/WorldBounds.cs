@@ -23,6 +23,10 @@ public class WorldBounds : MonoBehaviour {
         return locationToCheck.y > spawnMarginAboveWater + waterY;
     }
 
+	public float WaterHeight() {
+		return spawnMarginAboveWater + waterY;
+	}
+
     public Vector3 ForceInbounds(Vector3 before) {
         Vector3 after = before;
         if (after.z > Nz) {

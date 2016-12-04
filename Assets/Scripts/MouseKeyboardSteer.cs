@@ -10,6 +10,7 @@ public class MouseKeyboardSteer : MonoBehaviour {
     float camLon = 0.0f;
 	public GameObject tornado;
 	public GameObject volcanoMaker;
+	float minAltitude = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +19,25 @@ public class MouseKeyboardSteer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += Vector3.forward * 4.0f * Time.deltaTime * Input.GetAxis("Vertical");
-        transform.position += Vector3.right * 4.0f * Time.deltaTime * Input.GetAxis("Horizontal");
+		float minHeight =
+			Terrain.activeTerrain.transform.position.y + Terrain.activeTerrain.SampleHeight(transform.position) + 0.08f;
+		float seaLevel = WorldBounds.instance.WaterHeight();
+		if(minHeight < seaLevel) {
+			minHeight = seaLevel;
+		}
+		if(transform.position.y < minHeight) {
+			Vector3 fixedH = transform.position;
+			fixedH.y = minHeight;
+			transform.position = fixedH;
+		}
 
-		camLat += Time.deltaTime * Input.GetAxis("Mouse Y") * 50.0f * -1.0f;
-        camLon += Time.deltaTime * Input.GetAxis("Mouse X") * 50.0f;
+		transform.position += transform.forward * 0.5f * Time.deltaTime * Input.GetAxis("Vertical");
+		transform.position += transform.right * 0.4f * Time.deltaTime * Input.GetAxis("Horizontal");
+		transform.position += Vector3.up * -0.4f * Time.deltaTime * Input.GetAxis("Elevation");
+
+		camLat += Time.deltaTime * Input.GetAxis("Mouse Y") * 20.0f * -1.0f;
+		camLat = Mathf.Clamp(camLat, -70.0f, 70.0f);
+        camLon += Time.deltaTime * Input.GetAxis("Mouse X") * 20.0f;
 
         transform.rotation = Quaternion.Euler(camLat, camLon, 0.0f);
 
