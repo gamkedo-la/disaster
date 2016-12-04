@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ShowWhenUnderground : MonoBehaviour {
 
@@ -7,7 +8,11 @@ public class ShowWhenUnderground : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         bubble = gameObject.GetComponent<Renderer>();
-	}
+        if (SceneManager.GetActiveScene().name.CompareTo("MainMenu") == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -15,7 +20,8 @@ public class ShowWhenUnderground : MonoBehaviour {
         {
             bubble.enabled = false;
         }
-        else {
+        else
+        {
             bubble.enabled = true;
         }
 	}
