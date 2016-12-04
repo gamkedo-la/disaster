@@ -186,10 +186,10 @@ public class InputManager : MonoBehaviour {
                     meteorPresent = false;
                     break;
                 case inputMode.Tornado:
-                    TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
+                    /*TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
                     tm.AddPower(2.0f);
                     //Debug.Log("I'm calling start moving!");
-                    tm.StartMoving();
+                    tm.StartMoving();*/
                     break;
                 case inputMode.Storms:
                     RainCloud storm = cloud.GetComponent<RainCloud>();
