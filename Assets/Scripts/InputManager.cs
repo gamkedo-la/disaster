@@ -27,6 +27,8 @@ public class InputManager : MonoBehaviour {
     public HandAnimController handAnim;
     public HandAnimController handAnimOther;
 
+    public Transform parentOffset;
+
     // Use this for initialization
     void Awake () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -43,15 +45,31 @@ public class InputManager : MonoBehaviour {
 
     void SpawnAndParentObject(GameObject toSpawn, bool lockedToHand, bool hasRB) {
         focusedGO = (GameObject)GameObject.Instantiate(toSpawn);
-        
-        focusedGO.transform.position = transform.position;
-        focusedGO.transform.rotation = transform.rotation;
+
+        if (parentOffset != null)
+        {
+            focusedGO.transform.position = parentOffset.position;
+            focusedGO.transform.rotation = parentOffset.rotation;
+        }
+        else
+        {
+            focusedGO.transform.position = transform.position;
+            focusedGO.transform.rotation = transform.rotation;
+        }
         if (hasRB) {
             Rigidbody toSpawnRB = focusedGO.gameObject.GetComponent<Rigidbody>();
             toSpawnRB.isKinematic = true;
         }
         if (lockedToHand) {
-            focusedGO.gameObject.transform.SetParent(gameObject.transform);
+            if (parentOffset != null)
+            {
+                focusedGO.gameObject.transform.SetParent(parentOffset);
+            }
+            else
+            {
+                focusedGO.gameObject.transform.SetParent(gameObject.transform);
+            }
+               
         }
         
     }
