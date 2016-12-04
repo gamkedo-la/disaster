@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class InputManager : MonoBehaviour {
@@ -28,7 +29,7 @@ public class InputManager : MonoBehaviour {
     public HandAnimController handAnimOther;
 
     public Transform parentOffset;
-
+    private bool inMenuScene = false;
     // Use this for initialization
     void Awake () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -40,6 +41,12 @@ public class InputManager : MonoBehaviour {
         }
         else {
             Debug.Log("for " + name + " there was no button Holder");
+        }
+        if (SceneManager.GetActiveScene().name.CompareTo("MainMenu") == 0)
+        {
+            inMenuScene = true;
+            if (handAnim != null && inMenuScene)
+                handAnim.SetPoint(true);
         }
     }
 
@@ -84,6 +91,7 @@ public class InputManager : MonoBehaviour {
     }
 
     void Update() {
+
         device = SteamVR_Controller.Input((int)trackedObj.index);
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu)){
             Debug.Log("You hit the menu button!");
@@ -95,17 +103,17 @@ public class InputManager : MonoBehaviour {
             {
                 buttonEnabled = true;
                 buttonHolder.SetActive(true);
-                if (handAnim != null)
+                if (handAnim != null && !inMenuScene)
                     handAnim.SetPoint(true);
-                if (handAnim != null)
+                if (handAnim != null && !inMenuScene)
                     handAnimOther.SetPoint(true);
             }
             else if (buttonEnabled == true)
             {
                 buttonEnabled = false;
-                buttonHolder.SetActive(false);
+                buttonHolder.SetActive(false && !inMenuScene);
                 if (handAnim != null)
-                    handAnim.SetPoint(false);
+                    handAnim.SetPoint(false && !inMenuScene);
                 if (handAnim != null)
                     handAnimOther.SetPoint(false);
             }
@@ -114,145 +122,160 @@ public class InputManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+        
         device = SteamVR_Controller.Input((int)trackedObj.index);
-       /* if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
-            if (buttonEnabled == false)
-            {
-                buttonEnabled = true;
-                buttonHolder.SetActive(true);
-            }
-            else if (buttonEnabled == true) {
-                buttonEnabled = false;
-                buttonHolder.SetActive(false);
-            }
-        }*/
-
-        /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+        if (!inMenuScene)
         {
-            GameObject db = (GameObject)GameObject.Instantiate(deadBody);
-            db.transform.position = transform.position;
-            db.GetComponent<PeopleMover>().knockOver();
-        }*/
+            /* if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController") {
+                 if (buttonEnabled == false)
+                 {
+                     buttonEnabled = true;
+                     buttonHolder.SetActive(true);
+                 }
+                 else if (buttonEnabled == true) {
+                     buttonEnabled = false;
+                     buttonHolder.SetActive(false);
+                 }
+             }*/
 
-        //if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
-        //{
-        //    Debug.Log("You activated 'TouchUp' on the trigger");
-        //}
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
-            if (handAnim != null)
+            /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
             {
-                handAnim.SetTrigger(true);
-            }
-            if (isHandInCloud)
-            {
-                currentAction = inputMode.Storms;
-                
-            }
-            else if (transform.position.y > Camera.main.transform.position.y + 0.3f)
-            {
-                currentAction = inputMode.Meteor;
-                if (meteorPresent == false) {
-                    SpawnAndParentObject(meteor, true, true);
-                    meteorPresent = true;
-                }
-                
-            }
-            else if (transform.position.y < Terrain.activeTerrain.SampleHeight(transform.position) + Terrain.activeTerrain.transform.position.y)
-            {
-                currentAction = inputMode.Volcano;
-                
-            }
-            else {
-                //currentAction = inputMode.Tornado;
-                
-            }
-            //Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
-        }
+                GameObject db = (GameObject)GameObject.Instantiate(deadBody);
+                db.transform.position = transform.position;
+                db.GetComponent<PeopleMover>().knockOver();
+            }*/
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            if (handAnim != null)
+            //if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+            //{
+            //    Debug.Log("You activated 'TouchUp' on the trigger");
+            //}
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {
-                handAnim.SetTrigger(false);
-            }
-            Debug.Log("You activated 'PressUp' on the trigger");
-            switch (currentAction) {
-				case inputMode.Meteor:
-					focusedGO.gameObject.transform.SetParent (null);
-					Rigidbody meteorRB = focusedGO.gameObject.GetComponent<Rigidbody> ();
-					meteorRB.isKinematic = false;
-					focusedGO.GetComponent<AudioSource> ().Play ();
-                    tossObject(meteorRB);
-                    meteorPresent = false;
-                    break;
-                case inputMode.Tornado:
-                    /*TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
-                    tm.AddPower(2.0f);
-                    //Debug.Log("I'm calling start moving!");
-                    tm.StartMoving();*/
-                    break;
-                case inputMode.Storms:
-                    RainCloud storm = cloud.GetComponent<RainCloud>();
-                    if (storm != null)
-                    {
-					if (storm.IsRaining ()) {
-						storm.StopStorm ();
-					} else {
-						storm.StartStorm();
-					}
-                    }
-                    else {
-                        cloud.GetComponent<ThunderCloud>().StartStorm();
-                    }
-                    cloud.transform.SetParent(null);
-                    break;
-                case inputMode.Volcano:
-                    SpawnAndParentObject(volcanoCreator, true, false);
-                    break;
-                default:
-                    Debug.Log("Unhandled case: " + currentAction);
-                    break;
-            }
-
-            currentAction = inputMode.None;
-        }
-        if (currentAction == inputMode.Tornado) {
-            Vector3 movementDelta = transform.position - prevPOS;
-            movementDelta *= 2000.0f;
-            if (movementDelta.magnitude > 15.0f)
-            {
-                if (isStiring == false)
+                if (handAnim != null)
                 {
-                    movementSmoothingFrames++;
-                    if (movementSmoothingFrames > 10)
+                    handAnim.SetTrigger(true);
+                }
+                if (isHandInCloud)
+                {
+                    currentAction = inputMode.Storms;
+
+                }
+                else if (transform.position.y > Camera.main.transform.position.y + 0.3f)
+                {
+                    currentAction = inputMode.Meteor;
+                    if (meteorPresent == false)
                     {
-                        isStiring = true;
-                        //Debug.Log("Started stiring");
-                        movementSmoothingFrames = 10;
-                        if (focusedGO)
+                        SpawnAndParentObject(meteor, true, true);
+                        meteorPresent = true;
+                    }
+
+                }
+                else if (transform.position.y < Terrain.activeTerrain.SampleHeight(transform.position) + Terrain.activeTerrain.transform.position.y)
+                {
+                    currentAction = inputMode.Volcano;
+
+                }
+                else
+                {
+                    //currentAction = inputMode.Tornado;
+
+                }
+                //Debug.Log("You activated 'PressDown' on the trigger and detecting: " + currentAction);
+            }
+
+            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                if (handAnim != null)
+                {
+                    handAnim.SetTrigger(false);
+                }
+                Debug.Log("You activated 'PressUp' on the trigger");
+                switch (currentAction)
+                {
+                    case inputMode.Meteor:
+                        focusedGO.gameObject.transform.SetParent(null);
+                        Rigidbody meteorRB = focusedGO.gameObject.GetComponent<Rigidbody>();
+                        meteorRB.isKinematic = false;
+                        focusedGO.GetComponent<AudioSource>().Play();
+                        tossObject(meteorRB);
+                        meteorPresent = false;
+                        break;
+                    case inputMode.Tornado:
+                        /*TornadoManager tm = focusedGO.GetComponent<TornadoManager>();
+                        tm.AddPower(2.0f);
+                        //Debug.Log("I'm calling start moving!");
+                        tm.StartMoving();*/
+                        break;
+                    case inputMode.Storms:
+                        RainCloud storm = cloud.GetComponent<RainCloud>();
+                        if (storm != null)
                         {
-                            if (focusedGO.GetComponentInChildren<Spinner>() != null) {
-                                focusedGO.GetComponentInChildren<Spinner>().IncreasePower();
+                            if (storm.IsRaining())
+                            {
+                                storm.StopStorm();
+                            }
+                            else
+                            {
+                                storm.StartStorm();
                             }
                         }
-                        else {
-                            SpawnAndParentObject(tornado, false, false);
+                        else
+                        {
+                            cloud.GetComponent<ThunderCloud>().StartStorm();
+                        }
+                        cloud.transform.SetParent(null);
+                        break;
+                    case inputMode.Volcano:
+                        SpawnAndParentObject(volcanoCreator, true, false);
+                        break;
+                    default:
+                        Debug.Log("Unhandled case: " + currentAction);
+                        break;
+                }
+
+                currentAction = inputMode.None;
+            }
+            if (currentAction == inputMode.Tornado)
+            {
+                Vector3 movementDelta = transform.position - prevPOS;
+                movementDelta *= 2000.0f;
+                if (movementDelta.magnitude > 15.0f)
+                {
+                    if (isStiring == false)
+                    {
+                        movementSmoothingFrames++;
+                        if (movementSmoothingFrames > 10)
+                        {
+                            isStiring = true;
+                            //Debug.Log("Started stiring");
+                            movementSmoothingFrames = 10;
+                            if (focusedGO)
+                            {
+                                if (focusedGO.GetComponentInChildren<Spinner>() != null)
+                                {
+                                    focusedGO.GetComponentInChildren<Spinner>().IncreasePower();
+                                }
+                            }
+                            else
+                            {
+                                SpawnAndParentObject(tornado, false, false);
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                if (isStiring)
+                else
                 {
-                    movementSmoothingFrames--;
-                    if (movementSmoothingFrames < 0)
+                    if (isStiring)
                     {
-                        isStiring = false;
-                        //Debug.Log("Stopped stiring");
-                        movementSmoothingFrames = 0;
-                    }
+                        movementSmoothingFrames--;
+                        if (movementSmoothingFrames < 0)
+                        {
+                            isStiring = false;
+                            //Debug.Log("Stopped stiring");
+                            movementSmoothingFrames = 0;
+                        }
 
+                    }
                 }
             }
         }
