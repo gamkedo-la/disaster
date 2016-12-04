@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour {
     Vector3 prevPOS;
     bool buttonEnabled;
     public GameObject buttonHolder;
+	public GameObject buttonHolderMainMenu;
     bool meteorPresent = false;
 
     public HandAnimController handAnim;
@@ -98,25 +99,43 @@ public class InputManager : MonoBehaviour {
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && gameObject.tag == "LeftController")
         {
-            Debug.Log("Hit menu on left controller");
-            if (buttonEnabled == false)
-            {
-                buttonEnabled = true;
-                buttonHolder.SetActive(true);
-                if (handAnim != null && !inMenuScene)
-                    handAnim.SetPoint(true);
-                if (handAnim != null && !inMenuScene)
-                    handAnimOther.SetPoint(true);
-            }
-            else if (buttonEnabled == true)
-            {
-                buttonEnabled = false;
-                buttonHolder.SetActive(false && !inMenuScene);
-                if (handAnim != null)
-                    handAnim.SetPoint(false && !inMenuScene);
-                if (handAnim != null)
-                    handAnimOther.SetPoint(false);
-            }
+			if (inMenuScene == false) {
+				if (buttonEnabled == false) {
+					buttonEnabled = true;
+					buttonHolder.SetActive (true);
+					if (handAnim != null && !inMenuScene)
+						handAnim.SetPoint (true);
+					if (handAnim != null && !inMenuScene)
+						handAnimOther.SetPoint (true);
+				} else if (buttonEnabled == true) {
+					buttonEnabled = false;
+					buttonHolder.SetActive (false && !inMenuScene);
+					if (handAnim != null)
+						handAnim.SetPoint (false && !inMenuScene);
+					if (handAnim != null)
+						handAnimOther.SetPoint (false);
+				}	
+			} else {
+				if (buttonEnabled == false)
+				{
+					buttonEnabled = true;
+					buttonHolderMainMenu.SetActive(true);
+					if (handAnim != null && !inMenuScene)
+						handAnim.SetPoint(true);
+					if (handAnim != null && !inMenuScene)
+						handAnimOther.SetPoint(true);
+				}
+				else if (buttonEnabled == true)
+				{
+					buttonEnabled = false;
+					buttonHolderMainMenu.SetActive(false && !inMenuScene);
+					if (handAnim != null)
+						handAnim.SetPoint(false && !inMenuScene);
+					if (handAnim != null)
+						handAnimOther.SetPoint(false);
+				}
+			}
+            
         }
     }
 
