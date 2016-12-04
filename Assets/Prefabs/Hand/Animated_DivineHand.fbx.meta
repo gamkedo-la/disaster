@@ -1,0 +1,1385 @@
+fileFormatVersion: 2
+guid: d4a6ddf2f625f2d42905a33f09bd4ee6
+timeCreated: 1480811898
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armature
+    100004: fingerTip_switch
+    100006: fingerTip_switch_end
+    100008: hand.L
+    100010: ik_fk_Switch
+    100012: ik_fk_Switch_end
+    100014: indexControl
+    100016: indexControl.001
+    100018: indexControl.001_end
+    100020: indexControl.002
+    100022: indexControl.002_end
+    100024: indexControl.003
+    100026: indexControl.003_end
+    100028: indexControl.004
+    100030: indexControl.004_end
+    100032: indexControl1
+    100034: indexControl1.001
+    100036: indexControl1.002
+    100038: indexControl1.003
+    100040: indexControl1.004
+    100042: indexControl2
+    100044: indexControl2.001
+    100046: indexControl2.002
+    100048: indexControl2.003
+    100050: indexControl2.004
+    100052: indexControl3
+    100054: indexControl3.001
+    100056: indexControl3.001_end
+    100058: indexControl3.002
+    100060: indexControl3.002_end
+    100062: indexControl3.003
+    100064: indexControl3.003_end
+    100066: indexControl3.004
+    100068: indexControl3.004_end
+    100070: indexControl3_end
+    100072: indexControl_end
+    100074: indexDeform1
+    100076: indexDeform1.001
+    100078: indexDeform1.002
+    100080: indexDeform1.003
+    100082: indexDeform1.004
+    100084: indexDeform2
+    100086: indexDeform2.001
+    100088: indexDeform2.002
+    100090: indexDeform2.003
+    100092: indexDeform2.004
+    100094: indexDeform3
+    100096: indexDeform3.001
+    100098: indexDeform3.001_end
+    100100: indexDeform3.002
+    100102: indexDeform3.002_end
+    100104: indexDeform3.003
+    100106: indexDeform3.003_end
+    100108: indexDeform3.004
+    100110: indexDeform3.004_end
+    100112: indexDeform3_end
+    100114: indexTip_IK
+    100116: indexTip_IK.001
+    100118: indexTip_IK.001_end
+    100120: indexTip_IK.002
+    100122: indexTip_IK.002_end
+    100124: indexTip_IK.003
+    100126: indexTip_IK.003_end
+    100128: indexTip_IK.004
+    100130: indexTip_IK.004_end
+    100132: indexTip_IK_end
+    100134: left_hand
+    100136: switch_onoff
+    400000: //RootNode
+    400002: Armature
+    400004: fingerTip_switch
+    400006: fingerTip_switch_end
+    400008: hand.L
+    400010: ik_fk_Switch
+    400012: ik_fk_Switch_end
+    400014: indexControl
+    400016: indexControl.001
+    400018: indexControl.001_end
+    400020: indexControl.002
+    400022: indexControl.002_end
+    400024: indexControl.003
+    400026: indexControl.003_end
+    400028: indexControl.004
+    400030: indexControl.004_end
+    400032: indexControl1
+    400034: indexControl1.001
+    400036: indexControl1.002
+    400038: indexControl1.003
+    400040: indexControl1.004
+    400042: indexControl2
+    400044: indexControl2.001
+    400046: indexControl2.002
+    400048: indexControl2.003
+    400050: indexControl2.004
+    400052: indexControl3
+    400054: indexControl3.001
+    400056: indexControl3.001_end
+    400058: indexControl3.002
+    400060: indexControl3.002_end
+    400062: indexControl3.003
+    400064: indexControl3.003_end
+    400066: indexControl3.004
+    400068: indexControl3.004_end
+    400070: indexControl3_end
+    400072: indexControl_end
+    400074: indexDeform1
+    400076: indexDeform1.001
+    400078: indexDeform1.002
+    400080: indexDeform1.003
+    400082: indexDeform1.004
+    400084: indexDeform2
+    400086: indexDeform2.001
+    400088: indexDeform2.002
+    400090: indexDeform2.003
+    400092: indexDeform2.004
+    400094: indexDeform3
+    400096: indexDeform3.001
+    400098: indexDeform3.001_end
+    400100: indexDeform3.002
+    400102: indexDeform3.002_end
+    400104: indexDeform3.003
+    400106: indexDeform3.003_end
+    400108: indexDeform3.004
+    400110: indexDeform3.004_end
+    400112: indexDeform3_end
+    400114: indexTip_IK
+    400116: indexTip_IK.001
+    400118: indexTip_IK.001_end
+    400120: indexTip_IK.002
+    400122: indexTip_IK.002_end
+    400124: indexTip_IK.003
+    400126: indexTip_IK.003_end
+    400128: indexTip_IK.004
+    400130: indexTip_IK.004_end
+    400132: indexTip_IK_end
+    400134: left_hand
+    400136: switch_onoff
+    4300000: left_hand
+    7400000: GrabPart1
+    7400002: switch_onoff|switch_onoffAction
+    7400004: Armature|Action
+    7400006: FullClip
+    7400008: Armature|PoseLib
+    7400010: left_hand|Action
+    7400012: GripPulse
+    7400014: Grab
+    7400016: PointClick
+    7400018: PointPose
+    7400020: GrabPart2
+    9500000: //RootNode
+    13700000: left_hand
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: FullClip
+      takeName: Armature|ArmatureAction
+      firstFrame: 0
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: GripPulse
+      takeName: Armature|ArmatureAction
+      firstFrame: 60
+      lastFrame: 101
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Grab
+      takeName: Armature|ArmatureAction
+      firstFrame: 110
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: PointClick
+      takeName: Armature|ArmatureAction
+      firstFrame: 153
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: PointPose
+      takeName: Armature|ArmatureAction
+      firstFrame: 153
+      lastFrame: 154
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: GrabPart1
+      takeName: Armature|ArmatureAction
+      firstFrame: 110
+      lastFrame: 127
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: GrabPart2
+      takeName: Armature|ArmatureAction
+      firstFrame: 127
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hand.L
+        weight: 1
+      - path: Armature/hand.L/indexControl
+        weight: 1
+      - path: Armature/hand.L/indexControl/indexControl_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.001
+        weight: 1
+      - path: Armature/hand.L/indexControl.001/indexControl.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.002
+        weight: 1
+      - path: Armature/hand.L/indexControl.002/indexControl.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.003
+        weight: 1
+      - path: Armature/hand.L/indexControl.003/indexControl.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl.004
+        weight: 1
+      - path: Armature/hand.L/indexControl.004/indexControl.004_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3
+        weight: 1
+      - path: Armature/hand.L/indexControl1/indexControl2/indexControl3/indexControl3_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001
+        weight: 1
+      - path: Armature/hand.L/indexControl1.001/indexControl2.001/indexControl3.001/indexControl3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002
+        weight: 1
+      - path: Armature/hand.L/indexControl1.002/indexControl2.002/indexControl3.002/indexControl3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003
+        weight: 1
+      - path: Armature/hand.L/indexControl1.003/indexControl2.003/indexControl3.003/indexControl3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004
+        weight: 1
+      - path: Armature/hand.L/indexControl1.004/indexControl2.004/indexControl3.004/indexControl3.004_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3
+        weight: 1
+      - path: Armature/hand.L/indexDeform1/indexDeform2/indexDeform3/indexDeform3_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.001/indexDeform2.001/indexDeform3.001/indexDeform3.001_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.002/indexDeform2.002/indexDeform3.002/indexDeform3.002_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.003/indexDeform2.003/indexDeform3.003/indexDeform3.003_end
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004
+        weight: 1
+      - path: Armature/hand.L/indexDeform1.004/indexDeform2.004/indexDeform3.004/indexDeform3.004_end
+        weight: 1
+      - path: Armature/indexTip_IK
+        weight: 1
+      - path: Armature/indexTip_IK/indexTip_IK_end
+        weight: 1
+      - path: Armature/indexTip_IK.001
+        weight: 1
+      - path: Armature/indexTip_IK.001/indexTip_IK.001_end
+        weight: 1
+      - path: Armature/indexTip_IK.002
+        weight: 1
+      - path: Armature/indexTip_IK.002/indexTip_IK.002_end
+        weight: 1
+      - path: Armature/indexTip_IK.003
+        weight: 1
+      - path: Armature/indexTip_IK.003/indexTip_IK.003_end
+        weight: 1
+      - path: Armature/indexTip_IK.004
+        weight: 1
+      - path: Armature/indexTip_IK.004/indexTip_IK.004_end
+        weight: 1
+      - path: left_hand
+        weight: 1
+      - path: switch_onoff
+        weight: 1
+      - path: switch_onoff/fingerTip_switch
+        weight: 1
+      - path: switch_onoff/fingerTip_switch/fingerTip_switch_end
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch
+        weight: 1
+      - path: switch_onoff/ik_fk_Switch/ik_fk_Switch_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.015
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
