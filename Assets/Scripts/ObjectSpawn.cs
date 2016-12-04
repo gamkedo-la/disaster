@@ -8,6 +8,7 @@ public class ObjectSpawn : MonoBehaviour {
     public float creationRadius = 3.0f;
     public GameObject objectPrefab;
 	public int team = 0;
+    public bool arrows;
 
     List<GameObject> objectList = new List<GameObject>();
 	// Use this for initialization
@@ -36,6 +37,7 @@ public class ObjectSpawn : MonoBehaviour {
             PeopleMover pmScript = tempGo.GetComponent<PeopleMover>();
             if (pmScript) {
 				pmScript.SetTeam(team);
+                pmScript.AllowArrows(arrows);
             }
             objectList.Add(tempGo);
         }

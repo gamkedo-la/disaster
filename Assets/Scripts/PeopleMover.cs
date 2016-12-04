@@ -31,6 +31,7 @@ public class PeopleMover : MonoBehaviour {
 	public GameObject steam;
 	public AudioClip[] screams;
     int enemyArrowLayer;
+    public bool arrows = true;
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == enemyArrowLayer)
@@ -83,6 +84,10 @@ public class PeopleMover : MonoBehaviour {
 
     public void SetTeam(int team) {
         teamNumber = team;
+    }
+
+    public void AllowArrows(bool arrows_allowed) {
+        arrows = arrows_allowed;
     }
 
     IEnumerator TemporarilyFireproof() {

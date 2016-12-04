@@ -10,7 +10,7 @@ public class ProjectileSpawner : MonoBehaviour {
     PeopleMover myMover;
 
     IEnumerator ConsiderShooting() {
-        while (true) {
+        while (true && myMover.arrows) {
             yield return new WaitForSeconds(3.0f + Random.Range(2.0f, 8.0f));
             // If I'm dead stop shooting arrows (kills the coroutine)
             if (myMover.IsKnockedOver()) {
@@ -50,15 +50,14 @@ public class ProjectileSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         myMover = GetComponent<PeopleMover>();
-        if (arrowQuiver == null) {
-            arrowQuiver = GameObject.Find("ArrowHolder").transform;
+        if (myMover.arrows == true) {
+            if (arrowQuiver == null)
+            {
+                arrowQuiver = GameObject.Find("ArrowHolder").transform;
 
+            }
+            StartCoroutine(ConsiderShooting());
         }
-        StartCoroutine(ConsiderShooting());
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        
 	}
 }
