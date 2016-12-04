@@ -24,6 +24,9 @@ public class InputManager : MonoBehaviour {
     public GameObject buttonHolder;
     bool meteorPresent = false;
 
+    public HandAnimController handAnim;
+    public HandAnimController handAnimOther;
+
     // Use this for initialization
     void Awake () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -74,11 +77,19 @@ public class InputManager : MonoBehaviour {
             {
                 buttonEnabled = true;
                 buttonHolder.SetActive(true);
+                if (handAnim != null)
+                    handAnim.SetPoint(true);
+                if (handAnim != null)
+                    handAnimOther.SetPoint(true);
             }
             else if (buttonEnabled == true)
             {
                 buttonEnabled = false;
                 buttonHolder.SetActive(false);
+                if (handAnim != null)
+                    handAnim.SetPoint(false);
+                if (handAnim != null)
+                    handAnimOther.SetPoint(false);
             }
         }
     }
@@ -110,6 +121,10 @@ public class InputManager : MonoBehaviour {
         //    Debug.Log("You activated 'TouchUp' on the trigger");
         //}
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+            if (handAnim != null)
+            {
+                handAnim.SetTrigger(true);
+            }
             if (isHandInCloud)
             {
                 currentAction = inputMode.Storms;
@@ -138,6 +153,10 @@ public class InputManager : MonoBehaviour {
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
         {
+            if (handAnim != null)
+            {
+                handAnim.SetTrigger(false);
+            }
             Debug.Log("You activated 'PressUp' on the trigger");
             switch (currentAction) {
 				case inputMode.Meteor:

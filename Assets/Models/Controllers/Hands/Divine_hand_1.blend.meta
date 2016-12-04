@@ -1,0 +1,151 @@
+fileFormatVersion: 2
+guid: bb2f9647e05eead4fa44a6cdb5af35a7
+timeCreated: 1480840465
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: //RootNode
+    100004: fingerTip_switch
+    100006: hand_L
+    100008: ik_fk_Switch
+    100010: indexDeform1
+    100012: indexDeform1_001
+    100014: indexDeform1_002
+    100016: indexDeform1_003
+    100018: indexDeform1_004
+    100020: indexDeform2
+    100022: indexDeform2_001
+    100024: indexDeform2_002
+    100026: indexDeform2_003
+    100028: indexDeform2_004
+    100030: indexDeform3
+    100032: indexDeform3_001
+    100034: indexDeform3_002
+    100036: indexDeform3_003
+    100038: indexDeform3_004
+    100040: left_hand
+    100042: switch_onoff
+    100044: Text
+    100046: Text_001
+    100048: Text_002
+    100050: Text_003
+    100052: Text_004
+    100054: Text_005
+    400000: Armature
+    400002: //RootNode
+    400004: fingerTip_switch
+    400006: hand_L
+    400008: ik_fk_Switch
+    400010: indexDeform1
+    400012: indexDeform1_001
+    400014: indexDeform1_002
+    400016: indexDeform1_003
+    400018: indexDeform1_004
+    400020: indexDeform2
+    400022: indexDeform2_001
+    400024: indexDeform2_002
+    400026: indexDeform2_003
+    400028: indexDeform2_004
+    400030: indexDeform3
+    400032: indexDeform3_001
+    400034: indexDeform3_002
+    400036: indexDeform3_003
+    400038: indexDeform3_004
+    400040: left_hand
+    400042: switch_onoff
+    400044: Text
+    400046: Text_001
+    400048: Text_002
+    400050: Text_003
+    400052: Text_004
+    400054: Text_005
+    2300000: Text
+    2300002: Text_001
+    2300004: Text_002
+    2300006: Text_003
+    2300008: Text_004
+    2300010: Text_005
+    3300000: Text
+    3300002: Text_001
+    3300004: Text_002
+    3300006: Text_003
+    3300008: Text_004
+    3300010: Text_005
+    4300000: Text_005
+    4300002: Text_004
+    4300004: Text_003
+    4300006: Text_002
+    4300008: Text_001
+    4300010: Text
+    4300012: left_hand
+    7400000: Default Take
+    7400002: ArmatureAction
+    7400004: switch_onoffAction
+    9500000: //RootNode
+    13700000: left_hand
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
