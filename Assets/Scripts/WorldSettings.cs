@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class WorldSettings : MonoBehaviour {
     public bool isVREnabled = true;
@@ -32,8 +33,16 @@ public class WorldSettings : MonoBehaviour {
         else {
             localPlayCam.SetActive(true);
             viveCamParent.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            
+            if (SceneManager.GetActiveScene().name.CompareTo("MainMenu") == 0)
+            {
+                Cursor.visible = true;
+            }
+            else {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+                
         }
 	}
 

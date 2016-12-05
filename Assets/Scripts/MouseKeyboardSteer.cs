@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MouseKeyboardSteer : MonoBehaviour {
     public GameObject meteorToThrow;
-	public GameObject rainCloud;
-	public GameObject thunderCloud;
+	//public GameObject rainCloud;
+	//public GameObject thunderCloud;
     public Screenshot_Handler screenShotHandler;
     float camLat = 0.0f;
     float camLon = 0.0f;
-	public GameObject tornado;
+	//public GameObject tornado;
 	public GameObject volcanoMaker;
 	float minAltitude = 0.0f;
 
@@ -49,7 +50,7 @@ public class MouseKeyboardSteer : MonoBehaviour {
 			tempGO.GetComponent<AudioSource> ().Play ();
         }
 
-		if (Input.GetKeyDown (KeyCode.T)) {
+		/*if (Input.GetKeyDown (KeyCode.T)) {
 			GameObject tempGo = (GameObject)GameObject.Instantiate (tornado);
 			tempGo.transform.position = transform.position;
 			tempGo.transform.rotation = transform.rotation;
@@ -62,7 +63,7 @@ public class MouseKeyboardSteer : MonoBehaviour {
 				tempGo.GetComponentInChildren<Spinner>().IncreasePower();
 				tempGo.GetComponentInChildren<Spinner>().IncreasePower();
 			}
-		}
+		}*/
 
 		if (Input.GetKeyDown (KeyCode.V)) {
 			GameObject tempGO = (GameObject) GameObject.Instantiate(volcanoMaker);
@@ -71,7 +72,7 @@ public class MouseKeyboardSteer : MonoBehaviour {
 			rb.AddForce(transform.forward * 140.0f);
 		}
 
-		if(Input.GetKeyDown (KeyCode.R)) {
+		/*if(Input.GetKeyDown (KeyCode.R)) {
 			RainCloud storm = rainCloud.GetComponent<RainCloud>();
 			if (storm != null)
 			{
@@ -85,8 +86,10 @@ public class MouseKeyboardSteer : MonoBehaviour {
 			{
 				storm.StartStorm();
 			}
-		}
-
+		}*/
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("MainMenu");
+        }
         if(Input.GetKeyDown(KeyCode.P))
             screenShotHandler.PressDown();
 
